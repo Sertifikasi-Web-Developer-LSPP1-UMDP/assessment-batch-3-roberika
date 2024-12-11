@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminRoleMiddleware
+class NonAdminRoleMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class AdminRoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Hanya terima jika ada user dan user adalah admin
-        if (!$request->user() || !$request->user()->hasRole('admin')) {
+        // Hanya terima jika ada user dan user bukan admin (untuk pendaftaran karena akun admin tidak untuk daftar)
+        if (!$request->user() || $request->user()->hasRole('admin')) {
             abort(403, 'Unauthorized action.');
         }
         return $next($request);

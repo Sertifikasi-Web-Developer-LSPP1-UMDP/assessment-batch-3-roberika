@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\UserStatus;
 use App\Models\ApplicantStatus;
 use App\Models\AnnouncementStatus;
@@ -30,6 +31,12 @@ class DatabaseSeeder extends Seeder
         AnnouncementStatus::factory() ->create([ 'status' => 'draft', ]);
         AnnouncementStatus::factory() ->create([ 'status' => 'inactive', ]);
         AnnouncementStatus::factory()->create([ 'status' => 'active', ]);
-
+        
+        User::factory()->create([
+            'username' => 'RobertAdmin',
+            'password' => bcrypt('robertrobert'),
+            'status_id' => UserStatus::where('status', 'active')->first()->id,
+            'email' => 'robatononihon@gmail.com',
+        ]);
     }
 }

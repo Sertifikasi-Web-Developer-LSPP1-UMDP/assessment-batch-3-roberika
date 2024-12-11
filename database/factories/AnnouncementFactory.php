@@ -21,7 +21,7 @@ class AnnouncementFactory extends Factory
             'title' => fake()->sentence(),
             'summary' => fake()->paragraph(),
             'body' => fake()->paragraphs(3, true),
-            'status' => AnnouncementStatus::default(),
+            'status' => AnnouncementStatus::where('status', fake()->randomElement(['draft', 'inactive', 'active']))->first()->id,,
             'released_at' => now(),
         ];
     }
