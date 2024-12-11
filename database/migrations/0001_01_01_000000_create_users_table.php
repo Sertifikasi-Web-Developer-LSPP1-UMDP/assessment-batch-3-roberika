@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default(7);
             $table->foreign('status_id')
                 ->references('id')
                 ->on('user_statuses')
@@ -42,14 +42,14 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
         
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id();
-            $table->string('username');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->timestamps();
-        });  
+        // Schema::create('admins', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('username');
+        //     $table->string('email')->unique();
+        //     $table->timestamp('email_verified_at')->nullable();
+        //     $table->string('password');
+        //     $table->timestamps();
+        // });  
     }
 
     /**

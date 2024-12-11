@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('religion')->nullable();
             $table->string('address')->nullable();
             $table->string('guardian_phone_number')->nullable();
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')
                 ->references('id')
                 ->on('applicant_statuses')

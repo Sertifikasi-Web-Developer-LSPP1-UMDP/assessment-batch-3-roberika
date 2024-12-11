@@ -9,25 +9,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// - Perlu login
-// ..Dashboard untuk menuju ke halaman pendaftaran, melihat pengumuman, melihat status pendaftaran
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    // - Perlu login
+    // ..Dashboard untuk menuju ke halaman pendaftaran, melihat pengumuman, melihat status pendaftaran
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-// ..Halaman pendaftaran dan melihat status pendaftaran lengkap
-Route::get('/application', function () {
-    return view('application');
-})->middleware(['auth', 'verified'])->name('application');
+    // ..Halaman pendaftaran dan melihat status pendaftaran lengkap
+    Route::get('/application', function () {
+        return view('application');
+    })->name('application');
 
-Route::middleware('auth')->name('profile.')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy');
+    Route::name('profile.')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy');
+    });
 });
 
 // Admin
-Route::prefix('/admin')->name('admin.')->group(function () {    
+Route::prefix('/admin')->name('admin.')->middleware(['auth', 'verified', 'role:admin'])->group(function () {    
     // ..Halaman login admin
     Route::get('/', function () {
         return view('welcome');

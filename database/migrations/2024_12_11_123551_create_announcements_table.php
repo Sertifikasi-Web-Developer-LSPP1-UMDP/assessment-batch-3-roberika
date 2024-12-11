@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('summary')->nullable();
             $table->string('body')->nullable();
-            $table->unsignedBigInteger('status_id');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')
                 ->references('id')
                 ->on('announcement_statuses')
