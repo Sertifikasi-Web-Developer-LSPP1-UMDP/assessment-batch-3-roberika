@@ -29,44 +29,39 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Admin
     Route::prefix('/admin')->name('admin.')->middleware(['admin'])->group(function () {    
-        // ..Halaman login admin
-        Route::get('/', function () {
-            return view('welcome');
-        });
-
         Route::middleware('auth')->group(function () {
             // ..Halaman dashboard admin
             Route::get('/dashboard', function () {
-                return view('dashboard');
+                return view('admin.dashboard');
             })->name('dashboard');
 
             // ..Admin bisa melihat, mengubah status, dan menghapus user
             Route::prefix('/users')->name('users.')->group(function () {
                 Route::get('/', function () {
-                    return view('admin.users.index');
+                    return view('admin.users');
                 })->name('index');
 
                 Route::patch('/{user}', function () {
-                    return redirect()->route('admin.users.index');
+                    return redirect()->route('admin.users');
                 })->name('update');
 
                 Route::delete('/{user}', function () {
-                    return redirect()->route('admin.users.index');
+                    return redirect()->route('admin.users');
                 })->name('destroy');
             });
 
             // ..Admin bisa melihat, mengubah status, dan menghapus aplikan
             Route::prefix('/applicants')->name('applicants.')->group(function () {
                 Route::get('/', function () {
-                    return view('admin.applicants.index');
+                    return view('admin.applicants');
                 })->name('index');
 
                 Route::patch('/{applicant}', function () {
-                    return redirect()->route('admin.applicants.index');
+                    return redirect()->route('admin.applicants');
                 })->name('update');
 
                 Route::delete('/{applicant}', function () {
-                    return redirect()->route('admin.applicants.index');
+                    return redirect()->route('admin.applicants');
                 })->name('destroy');
             });
 
