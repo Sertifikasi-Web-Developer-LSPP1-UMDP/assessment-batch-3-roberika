@@ -13,7 +13,7 @@ class Announcement extends Model
 
     public function status() 
     {
-        return $this->hasOne(AnnouncementStatus::class, 'id', 'status_id');
+        return $this->belongsTo(AnnouncementStatus::class, 'status_id', 'id');
     }
 
     /**

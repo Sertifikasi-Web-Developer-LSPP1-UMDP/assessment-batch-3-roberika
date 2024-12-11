@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnnouncementStatus extends Model
 {
+    public function announcement() 
+    {
+        return $this->hasMany(Announcement::class, 'status_id', 'id');
+    }
+
     /*
         Draft: waiting for listing by admin
         Inactive: announcement is delisted

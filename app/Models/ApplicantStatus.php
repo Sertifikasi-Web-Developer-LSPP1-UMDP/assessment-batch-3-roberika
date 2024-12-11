@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApplicantStatus extends Model
 {
+    public function applicant() 
+    {
+        return $this->hasMany(Applicant::class, 'status_id', 'id');
+    }
+
     /*
         Verifying: waiting for activation by admin
         Administration: in process by administration

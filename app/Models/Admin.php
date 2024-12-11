@@ -12,11 +12,6 @@ class Admin extends Authenticatable implements MustVerifyEmail
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    public function status() 
-    {
-        return $this->hasOne(UserStatus::class, 'id', 'status_id');
-    }
-
     /**
      * The attributes that are mass assignable.
      *

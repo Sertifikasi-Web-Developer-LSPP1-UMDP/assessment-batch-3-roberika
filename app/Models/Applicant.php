@@ -12,7 +12,12 @@ class Applicant extends Model
 
     public function status() 
     {
-        return $this->hasOne(ApplicantStatus::class, 'id', 'status_id');
+        return $this->belongsTo(ApplicantStatus::class, 'status_id', 'id');
+    }
+
+    public function user() 
+    {
+        return $this->belongsTo(User::class, 'id', 'id');
     }
 
     /**

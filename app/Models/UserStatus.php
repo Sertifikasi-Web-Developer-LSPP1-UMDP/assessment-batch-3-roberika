@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserStatus extends Model
 {
+    public function user() 
+    {
+        return $this->hasMany(User::class, 'status_id', 'id');
+    }
+
     /*
         Pending: waiting for email verification
         Verifying: waiting for activation by admin
