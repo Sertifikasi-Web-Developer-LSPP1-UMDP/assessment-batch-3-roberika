@@ -21,6 +21,9 @@ class AnnouncementStatus extends Model
         Inactive: announcement is delisted
         Active: announcement is active
     */
+    const DRAFT = 1;
+    const INACTIVE = 2;
+    const ACTIVE = 3;
     
     protected $fillable = [
         'status' => 'string',

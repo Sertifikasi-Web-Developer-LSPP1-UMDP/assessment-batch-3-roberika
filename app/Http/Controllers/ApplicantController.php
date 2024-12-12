@@ -10,7 +10,7 @@ class ApplicantController extends Controller
     public function index()
     {
         $applicants = Applicant::all();
-        return view('admin.applicants.index', compact('applicants'));
+        return view('admin.applicants', compact('applicants'));
     }
 
     public function update(Request $request, $id)

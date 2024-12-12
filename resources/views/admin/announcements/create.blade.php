@@ -1,3 +1,8 @@
-<div>
-    <!-- Life is available only in the present moment. - Thich Nhat Hanh -->
-</div>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Tambah Pengumuman Baru') }}
+        </h2>
+    </x-slot>
+
+</x-app-layout>

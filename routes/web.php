@@ -7,7 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// User
+// Guest
 // ..Welcome page untuk login, register, melihat pengumuman
 Route::get('/', function () {
     return view('welcome');
@@ -15,16 +15,7 @@ Route::get('/', function () {
 
 // ..Perlu login dan verifikasi email
 Route::middleware(['auth', 'verified'])->group(function () {
-    // ..Dashboard untuk menuju ke halaman pendaftaran, melihat pengumuman, melihat status pendaftaran
-    Route::get('/dashboard',function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    // ..Halaman pendaftaran dan melihat status pendaftaran lengkap
-    Route::middleware(['nonadmin'])->get('/application', function () {
-        return view('application');
-    })->name('application');
-
+    // User
     Route::name('profile.')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])
             ->name('edit');
@@ -35,12 +26,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])
             ->name('destroy');
     });
+
+    // Non Admin
+    Route::middleware(['nonadmin'])->group(function () {
+        // ..Dashboard untuk menuju ke halaman pendaftaran, melihat pengumuman, melihat status pendaftaran
+        Route::get('/dashboard',function () {
+            return view('dashboard');
+        })->name('dashboard');
+        
+        // ..Halaman pendaftaran dan melihat status pendaftaran lengkap
+        Route::get('/application', function () {
+            return view('application');
+        })->name('application');
+    });
     
     // Admin
     Route::prefix('/admin')->name('admin.')->middleware(['admin'])->group(function () {    
         Route::middleware('auth')->group(function () {
-            // ..Halaman dashboard admin
-            Route::get('/dashboard', function () {
+            // ..Dashboard khusus admin
+            Route::get('/dashboard',function () {
                 return view('admin.dashboard');
             })->name('dashboard');
 

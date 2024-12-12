@@ -17,11 +17,33 @@
                     </x-nav-link>
                 </div>
                 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('application')" :active="request()->routeIs('application')">
-                        {{ __('Pendaftaran') }}
-                    </x-nav-link>
-                </div>
+                @if (Auth::user()->isNonAdmin())
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('application')" :active="request()->routeIs('application')">
+                            {{ __('Pendaftaran') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                @if (Auth::user()->isAdmin())
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
+                            {{ __('Pengguna') }}
+                        </x-nav-link>
+                    </div>
+                    
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('admin.applicants.index')" :active="request()->routeIs('admin.applicants.index')">
+                            {{ __('Calon Mahasiswa') }}
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('admin.announcements.index')" :active="request()->routeIs('admin.announcements.index')">
+                            {{ __('Pengumuman') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Right-side Navigation Menu -->

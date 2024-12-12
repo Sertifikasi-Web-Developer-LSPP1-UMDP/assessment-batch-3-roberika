@@ -16,7 +16,7 @@ class AdminRoleMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Tolak jika bukan user atau user adalah bukan admin
-        if (!$request->user() || !$request->user()->where('status_id', 5)) {
+        if (!$request->user() || $request->user()->isNonAdmin()) {
             abort(403, 'Silahkan gunakan akun admin.');
         }
         return $next($request);

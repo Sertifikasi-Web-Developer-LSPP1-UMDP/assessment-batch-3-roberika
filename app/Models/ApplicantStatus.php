@@ -24,6 +24,12 @@ class ApplicantStatus extends Model
         Rejected: application rejected
         Accepted: application accepted
     */
+    const VERIFYING = 1;
+    const ADMINISTRATION = 2;
+    const ASSESSMENT = 3;
+    const EVALUATION = 4;
+    const REJECTED = 5;
+    const ACCEPTED = 6;
     
     protected $fillable = [
         'status' => 'string',

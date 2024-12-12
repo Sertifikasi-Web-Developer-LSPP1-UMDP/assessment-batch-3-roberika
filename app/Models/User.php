@@ -22,6 +22,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Applicant::class, 'id', 'id');
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->status_id === UserStatus::ADMIN;
+    }
+    
+    public function isNonAdmin(): bool
+    {
+        return $this->status_id !== UserStatus::ADMIN && $this->status_id !== UserStatus::INACTIVE;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

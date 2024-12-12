@@ -15,9 +15,9 @@ class NonAdminRoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Tolak jika bukan user atau user adalah admin (untuk pendaftaran karena akun admin tidak untuk daftar)
-        if (!$request->user() || $request->user()->status_id == 5) {
-            abort(403, 'Silahkan gunakan akun bukan admin.' + $request->user()->status_id);
+        // Pindah ke dashboard admin jika bukan user atau user adalah admin
+        if (!$request->user() || $request->user()->isAdmin()) {
+            return redirect(route('admin.dashboard', absolute: false));
         }
         return $next($request);
     }
