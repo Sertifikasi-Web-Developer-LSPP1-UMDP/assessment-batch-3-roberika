@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ApplicantController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
