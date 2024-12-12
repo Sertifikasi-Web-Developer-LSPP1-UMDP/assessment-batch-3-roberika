@@ -25,14 +25,20 @@ class Applicant extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'student_number',
+        'id',
         'name',
-        'phone_number',
         'gender',
-        'birthday',
+        'birthplace',
+        'birthdate',
         'religion',
+        'citizenship',
         'address',
+        'phone_number',
         'guardian_phone_number',
+        'school',
+        'school_path',
+        'major',
+        'reason',
         'status_id',
     ];
 }

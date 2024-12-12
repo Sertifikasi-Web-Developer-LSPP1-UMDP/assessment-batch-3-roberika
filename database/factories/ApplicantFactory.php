@@ -18,14 +18,19 @@ class ApplicantFactory extends Factory
     public function definition(): array
     {
         return [
-            'student_number' => fake()->unique()->numerify('2125######'),
             'name' => fake()->name(),
-            'phone_number' => fake()->unique()->numerify('08##-####-####'),
             'gender' => fake()->randomElement(['male', 'female']),  
-            'birthday' => fake()->date(),
+            'birthplace' => fake()->city(),
+            'birthdate' => fake()->dateTime('-17 years'),
             'religion' => fake()->randomElement(['buddhism', 'christianity', 'islam', 'hinduism', 'confucianism', 'others']),
+            'citizenship' => fake()->country(),
             'address' => fake()->address(),
+            'phone_number' => fake()->unique()->numerify('08##-####-####'),
             'guardian_phone_number' => fake()->unique()->numerify('08##-####-####'),
+            'school' => fake()->company(),
+            'school_path' => fake()->randomElement(['ipa', 'ips']),
+            'major' => fake()->randomElement(['science', 'social']),
+            'reason' => fake()->sentence(),
             'status_id' => fake()->randomElement(ApplicantStatus::STATUSES),
         ];
     }

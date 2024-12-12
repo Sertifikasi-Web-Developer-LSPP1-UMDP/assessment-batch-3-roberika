@@ -13,14 +13,21 @@ return new class extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->foreignId('id')->constrained('users', 'id')->primary();
-            $table->string('student_number')->nullable();
-            $table->string('name')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('birthday')->nullable();
-            $table->string('religion')->nullable();
-            $table->string('address')->nullable();
+            $table->string('name');
+            $table->string('gender');   
+            $table->string('birthplace');
+            $table->date('birthdate');
+            $table->string('religion');
+            $table->string('citizenship');
+            $table->string('address');
+            $table->string('phone_number');
             $table->string('guardian_phone_number')->nullable();
+
+            $table->string('school');
+            $table->string('school_path');
+            $table->string('major');
+            $table->longText('reason');
+
             $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')
                 ->references('id')

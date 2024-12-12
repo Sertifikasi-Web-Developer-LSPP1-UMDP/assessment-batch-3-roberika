@@ -32,11 +32,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard',function () {
             return view('dashboard');
         })->name('dashboard');
-        
+            
         // ..Halaman pendaftaran dan melihat status pendaftaran lengkap
         Route::get('/application', function () {
             return view('application');
         })->name('application');
+        Route::post('/application', [ApplicantController::class, 'store'])
+            ->name('application.store');
     });
     
     // Admin
