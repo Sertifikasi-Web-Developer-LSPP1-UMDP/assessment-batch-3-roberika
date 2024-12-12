@@ -15,9 +15,20 @@ class ApplicationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Tolak jika bukan user, status user inaktif, atau aplikan
-        if (!$request->user() || $request->user()->where('status_id', 3) || $request->user()->applicant()) {
-            abort(403, 'Akun ini tidak dapat digunakan untuk pendaftaran.');
+        // Tolak jika bukan user atau akun inaktif, menunggu verifikasi email, atau menunggu verifikasi admin
+        if (!$request->user() || $request->user()->isInactive()) {
+            // Tolak jika admin
+            if ($request->user()->isAdmin()) {
+                return redirect(route('admin.dashboard', absolute: false))
+                    ->with('message', 'Akun admin tidak dapat digunakan untuk pendaftaran');
+            }
+            // Tolak jika akun telah mendaftar
+            if ($request->user()->applicant()) {
+                return redirect(route('dashboard', absolute: false))
+                    ->with('message', 'Akun telah digunakan untuk pendaftaran');
+            }
+            return redirect(route('dashboard', absolute: false))
+                ->with('error', 'Akun belum dapat digunakan untuk pendaftaran');
         }
         return $next($request);
     }

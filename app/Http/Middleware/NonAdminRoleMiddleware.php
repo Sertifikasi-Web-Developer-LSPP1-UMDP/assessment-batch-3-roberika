@@ -17,7 +17,8 @@ class NonAdminRoleMiddleware
     {
         // Pindah ke dashboard admin jika bukan user atau user adalah admin
         if (!$request->user() || $request->user()->isAdmin()) {
-            return redirect(route('admin.dashboard', absolute: false));
+            return redirect(route('admin.dashboard', absolute: false))
+                ->with('message', 'Akun admin tidak dapat digunakan untuk mengakses laman tersebut');
         }
         return $next($request);
     }

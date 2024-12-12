@@ -22,6 +22,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Applicant::class, 'id', 'id');
     }
 
+    public function isInactive(): bool {
+        return $this->status_id === UserStatus::INACTIVE ||
+            $this->status_id === UserStatus::PENDING ||
+            $this->status_id === UserStatus::VERIFYING;
+    }
+
     public function isAdmin(): bool
     {
         return $this->status_id === UserStatus::ADMIN;

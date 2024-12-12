@@ -8,19 +8,36 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        @if (session('message'))
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-preset">
+                        {{ session('message') }}
+                    </div>
+                </div>
+            </div>
+        @elseif (session('error'))
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-preset">
+                        {{ session('error') }}
+                    </div>
+                </div>
+            </div>
+        @endif
+        
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-preset">
-                    {{ __("You're logged in!") }}
+                    {{ __("Welcome, Ad Min!") }}
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+        
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-preset">
                     {{ Auth::user()->username }}

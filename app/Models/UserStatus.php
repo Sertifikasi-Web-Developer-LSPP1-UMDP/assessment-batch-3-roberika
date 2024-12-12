@@ -23,10 +23,10 @@ class UserStatus extends Model
         Active: account is active
         Admin: account has admin role
     */
-    const PENDING = 1;
-    const VERIFYING = 2;
-    const INACTIVE = 3;
-    const ACTIVE = 4;
+    const VERIFYING = 1;
+    const PENDING = 2;
+    const ACTIVE = 3;
+    const INACTIVE = 4;
     const ADMIN = 5;
 
     protected $fillable = [

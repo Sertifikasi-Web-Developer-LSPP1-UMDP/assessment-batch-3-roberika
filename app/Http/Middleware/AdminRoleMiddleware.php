@@ -17,7 +17,8 @@ class AdminRoleMiddleware
     {
         // Tolak jika bukan user atau user adalah bukan admin
         if (!$request->user() || $request->user()->isNonAdmin()) {
-            abort(403, 'Silahkan gunakan akun admin.');
+            return redirect(route('dashboard', absolute: false))
+                ->with('message', 'Laman hanya bisa diakses oleh admin');;
         }
         return $next($request);
     }

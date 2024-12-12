@@ -15,10 +15,10 @@ class InitialSeeder extends Seeder
      */
     public function run(): void
     {
-        UserStatus::factory() ->create([ 'status' => 'pending', ]);
         UserStatus::factory() ->create([ 'status' => 'verifying', ]);
-        UserStatus::factory() ->create([ 'status' => 'inactive', ]);
+        UserStatus::factory() ->create([ 'status' => 'pending', ]);
         UserStatus::factory() ->create([ 'status' => 'active', ]);
+        UserStatus::factory() ->create([ 'status' => 'inactive', ]);
         UserStatus::factory() ->create([ 'status' => 'admin', ]);
             
         ApplicantStatus::factory() ->create([ 'status' => 'verifying', ]);

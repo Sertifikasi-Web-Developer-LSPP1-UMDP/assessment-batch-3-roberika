@@ -9,27 +9,40 @@ class ApplicantController extends Controller
 {
     public function index()
     {
-        $applicants = Applicant::all();
-        return view('admin.applicants', compact('applicants'));
+        $applicants = Applicant::paginate(30);
+        return view('admin.applicants', [
+            'applicants' => $applicants,
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        // TODO: Update hanya untuk ubah status
-        $validatedData = $request->validate([
-        ]);
+        $applicant = Applicant::find($id);
+        
+        if (!$applicant) {
+            return redirect()->route('admin.applicants.index')
+                ->with('error', 'Calon mahasiswa tidak ditemukan');
+        }
 
-        $applicant = Applicant::findOrFail($id);
-        $applicant->update($validatedData);
+        $applicant->status_id = $request->status_id;
+        $applicant->save();
 
-        return redirect()->route('admin.applicants.index');
+        return redirect()->route('admin.applicants.index')
+            ->with('message', 'Status calon mahasiswa berhasil diubah');
     }
 
     public function destroy($id)
     {
-        $applicant = Applicant::findOrFail($id);
+        $applicant = Applicant::find($id);
+        
+        if (!$applicant) {
+            return redirect()->route('admin.applicants.index')
+                ->with('error', 'Calon mahasiswa tidak ditemukan');
+        }
+
         $applicant->delete();
 
-        return redirect()->route('admin.applicants.index');
+        return redirect()->route('admin.applicants.index')
+            ->with('message', 'Calon mahasiswa berhasil dihapus');
     }
 }
