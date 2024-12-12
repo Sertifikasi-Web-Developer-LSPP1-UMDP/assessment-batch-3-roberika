@@ -21,8 +21,7 @@ class AnnouncementController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            //
         ]);
 
         Announcement::create($validatedData);
@@ -43,8 +42,7 @@ class AnnouncementController extends Controller
     public function update(Request $request, Announcement $announcement)
     {
         $validatedData = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            //
         ]);
 
         $announcement->update($validatedData);

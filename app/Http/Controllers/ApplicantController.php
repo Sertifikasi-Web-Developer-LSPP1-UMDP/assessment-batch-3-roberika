@@ -17,8 +17,6 @@ class ApplicantController extends Controller
     {
         // TODO: Update hanya untuk ubah status
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
         ]);
 
         $applicant = Applicant::findOrFail($id);

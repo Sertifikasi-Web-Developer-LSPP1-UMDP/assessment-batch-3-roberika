@@ -17,9 +17,6 @@ class UserController extends Controller
     {
         // TODO: Update hanya untuk ubah status
         $validatedData = $request->validate([
-            'username' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|min:6',
         ]);
 
         $user = User::findOrFail($id);
