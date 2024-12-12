@@ -14,6 +14,15 @@ class Announcement extends Model
         return $this->belongsTo(AnnouncementStatus::class, 'status_id', 'id');
     }
 
+    public function getStatusLabel()
+    {
+        return match ($this->status_id) {
+            AnnouncementStatus::DRAFT => 'Draft',
+            AnnouncementStatus::INACTIVE => 'Inaktif',
+            AnnouncementStatus::ACTIVE => 'Aktif',
+        }
+    }
+
     /**
      * The attributes that are mass assignable.
      *

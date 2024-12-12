@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <form action={{ route('application.store') }} method="POST" enctype="multipart/form-data" class="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-6">
+        <form action="{{ route('application.store') }}" method="POST" enctype="multipart/form-data" class="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-6">
                 @csrf
                 <input class="hidden" id="id" name="id" type="text" value="{{ Auth::user()->id }}">
                 <div class="flex flex-row gap-6 ">

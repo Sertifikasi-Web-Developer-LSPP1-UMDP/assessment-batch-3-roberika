@@ -13,6 +13,33 @@ class Applicant extends Model
     {
         return $this->belongsTo(ApplicantStatus::class, 'status_id', 'id');
     }
+    
+    public function getStatusLabel()
+    {
+        return match ($this->status_id) {
+            ApplicantStatus::VERIFYING => 'Verifikasi',
+            ApplicantStatus::ADMINISTRATION => 'Administrasi',
+            ApplicantStatus::ASSESSMENT => 'Asesi',
+            ApplicantStatus::EVALUATION => 'Evaluasi',
+            ApplicantStatus::REJECTED => 'Ditolak',
+            ApplicantStatus::ACCEPTED => 'Diterima',
+            ApplicantStatus::INACTIVE => 'Inaktif',
+        }
+    }
+    
+    public function getStatusMessage()
+    {
+        return match ($this->status_id) {
+            ApplicantStatus::VERIFYING => 'Aplikasi sedang menunggu verifikasi dari admin.',
+            ApplicantStatus::ADMINISTRATION => 'Pendaftaran sedang diproses oleh administrasi.',
+            ApplicantStatus::ASSESSMENT => 'Pendaftaran sedang diproses oleh tim asesor.',
+            ApplicantStatus::EVALUATION => 'Pendaftaran sedang dievaluasi.',
+            ApplicantStatus::REJECTED => 'Mohon maaf, pendaftaran calon mahasiswa anda telah ditolak.',
+            ApplicantStatus::ACCEPTED => 'Selamat, anda telah diterima sebagai calon mahasiswa.',
+            ApplicantStatus::INACTIVE => 'Pendaftaran telah diinvalidasi',
+            default => null,
+        }
+    }
 
     public function user() 
     {

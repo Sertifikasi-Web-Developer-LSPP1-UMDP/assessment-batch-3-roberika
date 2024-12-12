@@ -16,6 +16,27 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(UserStatus::class, 'status_id', 'id');
     }
+    
+    public function getStatusLabel()
+    {
+        return match ($this->status_id) {
+            UserStatus::PENDING => 'Verifikasi Email',
+            UserStatus::VERIFYING => 'Verifikasi Admin',
+            UserStatus::INACTIVE => 'Inaktif',
+            UserStatus::ACTIVE => 'Aktif',
+            UserStatus::ADMIN => 'Admin',
+        }
+    }
+
+    public function getStatusMessage()
+    {
+        return match ($this->status_id) {
+            UserStatus::PENDING => 'Silahkan verifikasi email anda lewat menu profil.',
+            UserStatus::VERIFYING => 'Menunggu verifikasi akun dari admin.',
+            UserStatus::INACTIVE => 'Akun ini telah dideaktifasi.',
+            default => null,
+        }
+    }
 
     public function applicant()
     {

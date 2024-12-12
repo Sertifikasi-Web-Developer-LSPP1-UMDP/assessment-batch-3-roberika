@@ -30,6 +30,7 @@ class ApplicantStatus extends Model
     const EVALUATION = 4;
     const REJECTED = 5;
     const ACCEPTED = 6;
+    const INACTIVE = 7;
 
     const STATUSES = [
         self::VERIFYING,
@@ -38,6 +39,7 @@ class ApplicantStatus extends Model
         self::EVALUATION,
         self::REJECTED,
         self::ACCEPTED,
+        self::INACTIVE,
     ];
     
     protected $fillable = [

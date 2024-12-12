@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 // Guest
 // ..Welcome page untuk login, register, melihat pengumuman
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AnnouncementController::class, 'publication'])
+    ->name('welcome');
 
 // ..Perlu login dan verifikasi email
 Route::middleware(['auth', 'verified'])->group(function () {

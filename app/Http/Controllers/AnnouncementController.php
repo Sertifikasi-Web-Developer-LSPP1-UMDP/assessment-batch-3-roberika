@@ -7,6 +7,16 @@ use App\Models\Announcement;
 
 class AnnouncementController extends Controller
 {
+    // Menampilkan pengumuman pada landing page
+    public function welcome()
+    {
+        $announcements = Announcement::where('released_at', '<', now())->paginate(30);
+        return view('welcome', [
+            'announcements' => $announcements,
+        ]);
+    }
+
+    // Menampilkan daftar pengumuman pada dashboard admin
     public function index()
     {
         $announcements = Announcement::paginate(30);
@@ -30,11 +40,6 @@ class AnnouncementController extends Controller
 
         return redirect()->route('admin.announcements.index')
             ->with('message', 'Pengumuman baru berhasil disimpan');
-    }
-
-    public function show(Announcement $announcement)
-    {
-        return view('admin.announcements.show', compact('announcement'));
     }
 
     public function edit(Announcement $announcement)
