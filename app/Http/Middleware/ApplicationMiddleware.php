@@ -17,7 +17,7 @@ class ApplicationMiddleware
     {
         // Tolak jika bukan user, status user inaktif, atau aplikan
         if (!$request->user() || $request->user()->where('status_id', 3) || $request->user()->applicant()) {
-            abort(403, 'Unauthorized action.');
+            abort(403, 'Akun ini tidak dapat digunakan untuk pendaftaran.');
         }
         return $next($request);
     }

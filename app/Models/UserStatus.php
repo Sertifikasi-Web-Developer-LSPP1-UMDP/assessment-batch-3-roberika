@@ -21,6 +21,7 @@ class UserStatus extends Model
         Verifying: waiting for activation by admin
         Inactive: account is suspended or deactivated
         Active: account is active
+        Admin: account has admin role
     */
 
     protected $fillable = [

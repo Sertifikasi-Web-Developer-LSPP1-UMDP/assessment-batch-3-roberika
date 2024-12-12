@@ -17,7 +17,7 @@ class AdminRoleMiddleware
     {
         // Tolak jika bukan user atau user adalah bukan admin
         if (!$request->user() || !$request->user()->where('status_id', 5)) {
-            abort(403, 'Unauthorized action.');
+            abort(403, 'Silahkan gunakan akun admin.');
         }
         return $next($request);
     }

@@ -39,5 +39,12 @@ class InitialSeeder extends Seeder
             'status_id' => UserStatus::where('status', 'admin')->first()->id,
             'email' => 'robatononihon@gmail.com',
         ]);
+
+        User::factory()->create([
+            'username' => 'RobertUser',
+            'password' => bcrypt('robertrobert'),
+            'status_id' => UserStatus::where('status', 'active')->first()->id,
+            'email' => 'robert.antonius@mhs.mdp.ac.id',
+        ]);
     }
 }

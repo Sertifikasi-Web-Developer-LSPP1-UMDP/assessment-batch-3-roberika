@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,7 @@ Route::get('/', function () {
 // ..Perlu login dan verifikasi email
 Route::middleware(['auth', 'verified'])->group(function () {
     // ..Dashboard untuk menuju ke halaman pendaftaran, melihat pengumuman, melihat status pendaftaran
-    Route::get('/dashboard', function () {
+    Route::get('/dashboard',function () {
         return view('dashboard');
     })->name('dashboard');
 
