@@ -26,7 +26,7 @@ class ApplicantFactory extends Factory
             'religion' => fake()->randomElement(['buddhism', 'christianity', 'islam', 'hinduism', 'confucianism', 'others']),
             'address' => fake()->address(),
             'guardian_phone_number' => fake()->unique()->numerify('08##-####-####'),
-            'status_id' => ApplicantStatus::where('status', fake()->randomElement(['verifying', 'administration', 'assessment', 'evaluation', 'rejected', 'accepted', 'inactive']))->first()->id,
+            'status_id' => fake()->randomElement(ApplicantStatus::STATUSES),
         ];
     }
 }

@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\UserStatus;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,11 +24,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $status_id = fake()->randomElement(UserStatus::STATUSES);
         return [
             'username' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'status_id' => UserStatus::where('status', fake()->randomElement(['pending', 'verifying', 'inactive', 'active']))->first()->id,
+            'email_verified_at' => $status_id == UserStatus::PENDING ? null : now(),
+            'status_id' => $status_id,
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

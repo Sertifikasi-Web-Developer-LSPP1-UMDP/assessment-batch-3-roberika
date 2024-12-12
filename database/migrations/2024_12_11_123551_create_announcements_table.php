@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('summary')->nullable();
-            $table->string('body')->nullable();
+            $table->longText('summary')->nullable();
+            $table->longText('body')->nullable();
             $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')
                 ->references('id')

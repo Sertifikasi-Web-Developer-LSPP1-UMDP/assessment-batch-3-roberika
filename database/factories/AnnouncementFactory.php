@@ -17,12 +17,13 @@ class AnnouncementFactory extends Factory
      */
     public function definition(): array
     {
+        $status_id = fake()->randomElement(AnnouncementStatus::STATUSES);
         return [
             'title' => fake()->sentence(),
-            'summary' => fake()->paragraph(),
+            'summary' => fake()->paragraph(2),
             'body' => fake()->paragraphs(3, true),
-            'status' => AnnouncementStatus::where('status', fake()->randomElement(['draft', 'inactive', 'active']))->first()->id,,
-            'released_at' => now(),
+            'status_id' => $status_id,
+            'released_at' => $status_id == AnnouncementStatus::DRAFT ? null : fake()->dateTimeBetween('-1 month', '+1 month'),
         ];
     }
 }

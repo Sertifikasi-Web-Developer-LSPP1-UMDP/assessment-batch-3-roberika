@@ -29,6 +29,14 @@ class UserStatus extends Model
     const INACTIVE = 4;
     const ADMIN = 5;
 
+    const STATUSES = [
+        self::VERIFYING,
+        self::PENDING,
+        self::ACTIVE,
+        self::INACTIVE,
+        self::ADMIN,
+    ];
+
     protected $fillable = [
         'status' => 'string',
     ];

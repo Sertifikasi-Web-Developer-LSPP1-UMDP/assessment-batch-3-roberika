@@ -24,6 +24,12 @@ class AnnouncementStatus extends Model
     const DRAFT = 1;
     const INACTIVE = 2;
     const ACTIVE = 3;
+
+    const STATUSES = [
+        self::DRAFT,
+        self::INACTIVE,
+        self::ACTIVE,
+    ];
     
     protected $fillable = [
         'status' => 'string',
