@@ -17,7 +17,7 @@ class UserStatusFactory extends Factory
      */
     public function definition(): array
     {
-        return UserStatus::where('status', 'pending')->first()->id;
+        return UserStatusFactory::pending();
     }
 
     public static function pending(): array

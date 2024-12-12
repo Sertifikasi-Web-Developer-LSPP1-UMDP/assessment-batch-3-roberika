@@ -8,10 +8,10 @@ use App\Models\ApplicantStatus;
 use App\Models\AnnouncementStatus;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class InitialSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Memasukkan data status dan satu akun admin
      */
     public function run(): void
     {
