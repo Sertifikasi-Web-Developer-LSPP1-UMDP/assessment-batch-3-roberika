@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-preset">
+        <h2 class="text-preset">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm subtext-preset">
+        <p class="subtext-preset">
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>

@@ -15,8 +15,8 @@ class ApplicationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Hanya terima jika status user bukan 7 (inactive, bukan aplikan)
-        if (!$request->user() || $request->user()->where('status_id', 7)) {
+        // Tolak jika bukan user, status user inaktif, atau aplikan
+        if (!$request->user() || $request->user()->where('status_id', 3) || $request->user()->applicant()) {
             abort(403, 'Unauthorized action.');
         }
         return $next($request);

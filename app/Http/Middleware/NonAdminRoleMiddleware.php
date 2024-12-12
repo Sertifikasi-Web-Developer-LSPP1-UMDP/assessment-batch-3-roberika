@@ -15,8 +15,8 @@ class NonAdminRoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Hanya terima jika ada user dan user bukan admin (untuk pendaftaran karena akun admin tidak untuk daftar)
-        if (!$request->user() || $request->user()->hasRole('admin')) {
+        // Tolak jika bukan user atau user adalah admin (untuk pendaftaran karena akun admin tidak untuk daftar)
+        if (!$request->user() || $request->user()->where('status_id', 5)) {
             abort(403, 'Unauthorized action.');
         }
         return $next($request);

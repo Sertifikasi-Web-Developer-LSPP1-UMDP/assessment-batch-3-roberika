@@ -15,8 +15,8 @@ class AdminRoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Hanya terima jika ada user dan user adalah admin
-        if (!$request->user() || !$request->user()->hasRole('admin')) {
+        // Tolak jika bukan user atau user adalah bukan admin
+        if (!$request->user() || !$request->user()->where('status_id', 5)) {
             abort(403, 'Unauthorized action.');
         }
         return $next($request);
