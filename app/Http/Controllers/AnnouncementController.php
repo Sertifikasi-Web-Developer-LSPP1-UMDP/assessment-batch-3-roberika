@@ -14,6 +14,7 @@ class AnnouncementController extends Controller
     {
         $announcements = Announcement::where('released_at', '<', now())
             ->where('status_id', '=', AnnouncementStatus::ACTIVE)
+            ->oldest('released_at')
             ->paginate(30);
         return view('welcome', [
             'announcements' => $announcements,
@@ -39,19 +40,13 @@ class AnnouncementController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string',
-            'summary' => 'string',
+            'summary' => 'required|string',
             'body' => 'required|string',
-            'released_at' => 'date',
-            'status_id' => 'integer',
+            'released_at' => 'required|date',
+            'status_id' => 'required|integer',
         ]);
 
-        Announcement::create([
-            'title' => $validatedData['title'],
-            'summary' => $validatedData['summary'],
-            'body' => $validatedData['body'],
-            'released_at' => $validatedData['released_at'],
-            'status_id' => $request->status_id ?? AnnouncementStatus::DRAFT,
-        ]);
+        Announcement::create($validatedData);
 
         return redirect()->route('admin.announcements.index')
             ->with('message', 'Pengumuman baru berhasil disimpan');
@@ -68,13 +63,11 @@ class AnnouncementController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string',
-            'summary' => 'string',
+            'summary' => 'required|string',
             'body' => 'required|string',
-            'released_at' => 'date',
-            'status_id' => 'integer',
+            'released_at' => 'required|date',
+            'status_id' => 'required|integer',
         ]); 
-
-        Log::debug($request->status_id);
 
         $announcement = Announcement::find($id);
         $announcement->update($validatedData);

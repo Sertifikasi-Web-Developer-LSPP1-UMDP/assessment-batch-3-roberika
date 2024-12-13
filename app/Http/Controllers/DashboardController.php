@@ -15,6 +15,7 @@ class DashboardController extends Controller
     {
         $announcements = Announcement::where('released_at', '<', now())
             ->where('status_id', '=', AnnouncementStatus::ACTIVE)
+            ->oldest('released_at')
             ->paginate(30);
         return view('dashboard', [
             'announcements' => $announcements,  
