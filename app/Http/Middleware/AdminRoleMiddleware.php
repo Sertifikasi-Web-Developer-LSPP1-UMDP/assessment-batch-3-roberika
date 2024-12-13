@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AdminRoleMiddleware
 {
@@ -16,7 +17,7 @@ class AdminRoleMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Tolak jika bukan user atau user adalah bukan admin
-        if (!$request->user() || $request->user()->isNonAdmin()) {
+        if (!Auth::user() || Auth::user()->isNonAdmin()) {
             return redirect(route('dashboard', absolute: false))
                 ->with('message', 'Laman hanya bisa diakses oleh admin');;
         }

@@ -10,23 +10,7 @@
     </x-slot>
     
     <div class="py-12">
-        @if (session('message'))
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-preset">
-                        {{ session('message') }}
-                    </div>
-                </div>
-            </div>
-        @elseif (session('error'))
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-preset">
-                        {{ session('error') }}
-                    </div>
-                </div>
-            </div>
-        @endif
+        <x-message-handler/>
         
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -52,6 +36,20 @@
                         </div>
                         <div class="text-3xl {{ Auth::user()->applicant->getStatusColor() }}">
                             {{ Auth::user()->applicant->getStatusMessage()}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-preset">
+                        <div>
+                            {{ __("Pendaftaran dapat dilakukan melalui") }}
+                            <a href="{{ route('application') }}" class="px-2 py-1 rounded-lg bg-slate-500">{{ __   ("Pendaftaran") }}</a>
+                        </div>
+                        <div class="text-3xl">
+                            {{ __("Belum mendaftar") }}
                         </div>
                     </div>
                 </div>

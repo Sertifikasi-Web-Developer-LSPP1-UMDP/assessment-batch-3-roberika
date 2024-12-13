@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class NonAdminRoleMiddleware
 {
@@ -16,7 +17,7 @@ class NonAdminRoleMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Pindah ke dashboard admin jika bukan user atau user adalah admin
-        if (!$request->user() || $request->user()->isAdmin()) {
+        if (!Auth::user() || Auth::user()->isAdmin()) {
             return redirect(route('admin.dashboard', absolute: false))
                 ->with('message', 'Akun admin tidak dapat digunakan untuk mengakses laman tersebut');
         }
