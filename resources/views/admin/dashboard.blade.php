@@ -8,10 +8,10 @@
     <div class="py-12">
         <x-message-handler/>
         
-        <div class="flex flex-col gap-6 items-center">
-            <div class="flex flex-row gap-6">
+        <div class="flex flex-col gap-6 items-center max-w-7xl mx-auto">
+            <div class="flex flex-row gap-6 w-full">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <div class="max-w-xl">
+                    <div class="">
                         <header>
                             <h2 class="text-preset">
                                 {{ __('Selamat datang, Admin') }}
@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 
-                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg flex-grow">
-                    <div class="max-w-xl">
+                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg grow">
+                    <div class="">
                         <header>
                             <h2 class="text-preset">
                                 {{ __('Daftar Pengumuman') }}
@@ -41,7 +41,9 @@
                                         @foreach ($announcements as $announcement)
                                             <tr>
                                                 <td class="border px-4 py-2">{{ $announcement->title }}</td>
-                                                <td class="border px-4 py-2">{{ $announcement->getStatusLabel() }}</td>
+                                                <td class="border px-4 py-2 text-center {{ $announcement->getStatusColor() }}">
+                                                    {{ $announcement->getStatusLabel() }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -52,9 +54,9 @@
                 </div>
             </div>
 
-            <div class="flex flex-row gap-6">
-                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <div class="max-w-xl">
+            <div class="flex flex-row gap-6 w-full">
+                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg grow">
+                    <div class="">
                         <header>
                             <h2 class="text-preset">
                                 {{ __('Daftar Pengguna') }}
@@ -74,7 +76,9 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td class="border px-4 py-2">{{ $user->username }}</td>
-                                                <td class="border px-4 py-2">{{ $user->getStatusLabel() }}</td>
+                                                <td class="border px-4 py-2 text-center {{ $user->getStatusColor() }}">
+                                                    {{ $user->getStatusLabel() }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -84,8 +88,8 @@
                     </div>
                 </div>
                 
-                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <div class="max-w-xl">
+                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg grow">
+                    <div class="">
                         <header>
                             <h2 class="text-preset">
                                 {{ __('Daftar Calon Mahasiswa') }}
@@ -105,7 +109,9 @@
                                         @foreach ($applicants as $applicant)
                                             <tr>
                                                 <td class="border px-4 py-2">{{ $applicant->name }}</td>
-                                                <td class="border px-4 py-2">{{ $applicant->getStatusLabel() }}</td>
+                                                <td class="border px-4 py-2 text-center font-bold {{ $applicant->getStatusColor() }}">
+                                                    {{ $applicant->getStatusLabel() }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

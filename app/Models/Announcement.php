@@ -23,6 +23,15 @@ class Announcement extends Model
         };
     }
 
+    public function getStatusColor()
+    {   
+        return match ($this->status_id) {
+            AnnouncementStatus::DRAFT => 'text-blue-400',
+            AnnouncementStatus::INACTIVE => 'text-gray-400',
+            AnnouncementStatus::ACTIVE => 'text-green-400',
+        };
+    }
+
     /**
      * The attributes that are mass assignable.
      *
