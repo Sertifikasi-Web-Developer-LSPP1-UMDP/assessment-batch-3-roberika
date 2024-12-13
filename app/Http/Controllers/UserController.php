@@ -33,19 +33,4 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')
             ->with('message', 'Status pengguna berhasil diubah');
     }
-
-    public function destroy($id)
-    {
-        $user = User::find($id);
-        if (!$user) {
-            return redirect()->route('admin.users.index')
-                ->with('error', 'Akun pengguna tidak ditemukan');
-        }
-
-        $user->status_id = UserStatus::INACTIVE;
-        $user->save();
-
-        return redirect()->route('admin.users.index')
-            ->with('message', 'Akun pengguna berhasil dihapus');
-    }
 }

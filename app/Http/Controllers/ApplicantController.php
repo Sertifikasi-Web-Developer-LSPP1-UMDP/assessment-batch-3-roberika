@@ -76,19 +76,4 @@ class ApplicantController extends Controller
         return redirect()->route('admin.applicants.index')
             ->with('message', 'Status calon mahasiswa berhasil diubah');
     }
-
-    public function destroy($id)
-    {
-        $applicant = Applicant::find($id);
-        if (!$applicant) {
-            return redirect()->route('admin.applicants.index')
-                ->with('error', 'Calon mahasiswa tidak ditemukan');
-        }
-
-        $applicant->status_id = ApplicantStatus::INACTIVE;
-        $applicant->save();
-
-        return redirect()->route('admin.applicants.index')
-            ->with('message', 'Calon mahasiswa berhasil dihapus');
-    }
 }
