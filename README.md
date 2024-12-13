@@ -120,3 +120,7 @@ Ketergantungan utama pada proyek ini adalah pada beberapa pustaka ini:
 - Tailwind v3
 
 Spesifikasi versi lengkap ada pada [composer.json](https://github.com/Sertifikasi-Web-Developer-LSPP1-UMDP/assessment-batch-3-roberika/blob/main/composer.json) dan pada [package.json](https://github.com/Sertifikasi-Web-Developer-LSPP1-UMDP/assessment-batch-3-roberika/blob/main/package.json).
+
+## Presentation
+
+Presentasi aplikasi terdapat pada [Google Presentation berikut](https://docs.google.com/presentation/d/1vGdwTSptRSKhjy13ElXtoGUnZb8RerWuR61G-xX9Cn8/edit?usp=sharing).
