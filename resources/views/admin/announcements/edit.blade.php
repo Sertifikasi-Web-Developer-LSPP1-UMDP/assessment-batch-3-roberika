@@ -52,6 +52,12 @@
                                 <x-date-picker value="{{ $announcement->getPublicationDate() }}" id="released_at" name="released_at" class="mt-1 block w-full" />
                                 <x-input-error class="mt-2" :messages="$errors->get('released_at')" />
                             </div>
+                            
+                            <div>
+                                <x-input-label for="image" :value="__('Gambar')" />
+                                <input type="file" name="image" id="image">
+                                <x-input-error class="mt-2" :messages="$errors->get('image')" />
+                            </div>
 
                             <div>
                                 <x-input-label for="status_id" :value="__('Status')" />

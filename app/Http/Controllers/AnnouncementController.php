@@ -43,10 +43,21 @@ class AnnouncementController extends Controller
             'summary' => 'required|string',
             'body' => 'required|string',
             'released_at' => 'required|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status_id' => 'required|integer',
         ]);
 
-        Announcement::create($validatedData);
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path().'/img/announcements/', $imageName);
+
+        Announcement::create([
+            'title' => $validatedData['title'],
+            'summary' => $validatedData['summary'],
+            'body' => $validatedData['body'],
+            'released_at' => $validatedData['released_at'],
+            'image_url' => 'img/announcements'.$imageName,
+            'status_id' => $validatedData['status_id'],
+        ]);
 
         return redirect()->route('admin.announcements.index')
             ->with('message', 'Pengumuman baru berhasil disimpan');
@@ -66,11 +77,26 @@ class AnnouncementController extends Controller
             'summary' => 'required|string',
             'body' => 'required|string',
             'released_at' => 'required|date',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'status_id' => 'required|integer',
         ]); 
 
         $announcement = Announcement::find($id);
-        $announcement->update($validatedData);
+        $announcement->update([
+            'image_url' => 'img/announcements'.$imageName,
+        ]);
+
+        if ($request->file != ''){   
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path().'/img/announcements/', $imageName);
+        }
+        $announcement->update([
+            'title' => $validatedData['title'],
+            'summary' => $validatedData['summary'],
+            'body' => $validatedData['body'],
+            'released_at' => $validatedData['released_at'],
+            'status_id' => $validatedData['status_id'],
+        ]);
 
         return redirect()->route('admin.announcements.index')
             ->with('message', 'Pengumuman berhasil diperbaharui');

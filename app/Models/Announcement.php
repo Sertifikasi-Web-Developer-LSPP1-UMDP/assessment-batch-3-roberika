@@ -50,6 +50,7 @@ class Announcement extends Model
         'summary',
         'body',
         'status_id',    
+        'image_url',
         'released_at',
     ];
 }

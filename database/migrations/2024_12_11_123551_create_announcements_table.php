@@ -13,16 +13,17 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->longText('summary')->nullable();
-            $table->longText('body')->nullable();
+            $table->string('title');
+            $table->longText('summary');
+            $table->longText('body');
+            $table->string('image_url');
             $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')
                 ->references('id')
                 ->on('announcement_statuses')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->timestamp('released_at')->nullable();
+            $table->timestamp('released_at');
             $table->timestamps();
         });
     }

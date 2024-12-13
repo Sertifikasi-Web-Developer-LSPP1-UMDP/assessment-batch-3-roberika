@@ -47,6 +47,12 @@
                             </div>
 
                             <div>
+                                <x-input-label for="image" :value="__('Gambar')" />
+                                <input type="file" name="image" id="image">
+                                <x-input-error class="mt-2" :messages="$errors->get('image')" />
+                            </div>
+
+                            <div>
                                 <x-input-label for="status_id" :value="__('Status')" />
                                 <x-combo-box id="status_id" name="status_id" class="mt-1 block w-full text-center">
                                     <option disabled selected>{{ __('. . .') }}</option>

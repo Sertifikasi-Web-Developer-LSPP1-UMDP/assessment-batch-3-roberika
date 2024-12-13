@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('citizenship');
             $table->string('address');
             $table->string('phone_number');
-            $table->string('guardian_phone_number')->nullable();
+            $table->string('guardian_phone_number');
 
             $table->string('school');
             $table->string('school_path');
