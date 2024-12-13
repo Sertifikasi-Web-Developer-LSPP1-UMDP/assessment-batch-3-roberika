@@ -24,7 +24,7 @@ class Applicant extends Model
             ApplicantStatus::REJECTED => 'Ditolak',
             ApplicantStatus::ACCEPTED => 'Diterima',
             ApplicantStatus::INACTIVE => 'Inaktif',
-        }
+        };
     }
     
     public function getStatusMessage()
@@ -38,7 +38,20 @@ class Applicant extends Model
             ApplicantStatus::ACCEPTED => 'Selamat, anda telah diterima sebagai calon mahasiswa.',
             ApplicantStatus::INACTIVE => 'Pendaftaran telah diinvalidasi',
             default => null,
-        }
+        };
+    }
+
+    public function getStatusColor()
+    {
+        return match ($this->status_id) {
+            ApplicantStatus::VERIFYING => 'text-yellow-400',
+            ApplicantStatus::ADMINISTRATION => 'text-blue-300',
+            ApplicantStatus::ASSESSMENT => 'text-blue-500',
+            ApplicantStatus::EVALUATION => 'text-blue-700',
+            ApplicantStatus::REJECTED => 'text-red-700',
+            ApplicantStatus::ACCEPTED => 'text-green-400',
+            ApplicantStatus::INACTIVE => 'text-gray-400',
+        };
     }
 
     public function user() 

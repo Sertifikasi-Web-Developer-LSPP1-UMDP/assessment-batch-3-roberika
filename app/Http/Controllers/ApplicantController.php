@@ -87,7 +87,8 @@ class ApplicantController extends Controller
                 ->with('error', 'Calon mahasiswa tidak ditemukan');
         }
 
-        $applicant->delete();
+        $applicant->status_id = ApplicantStatus::INACTIVE;
+        $applicant->save();
 
         return redirect()->route('admin.applicants.index')
             ->with('message', 'Calon mahasiswa berhasil dihapus');

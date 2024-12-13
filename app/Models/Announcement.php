@@ -15,12 +15,12 @@ class Announcement extends Model
     }
 
     public function getStatusLabel()
-    {
+    {   
         return match ($this->status_id) {
             AnnouncementStatus::DRAFT => 'Draft',
             AnnouncementStatus::INACTIVE => 'Inaktif',
             AnnouncementStatus::ACTIVE => 'Aktif',
-        }
+        };
     }
 
     /**

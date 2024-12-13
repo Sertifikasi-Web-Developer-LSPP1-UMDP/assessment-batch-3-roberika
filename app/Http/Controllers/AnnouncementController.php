@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnnouncementStatus;
 use Illuminate\Http\Request;
 use App\Models\Announcement;
 
@@ -10,7 +11,9 @@ class AnnouncementController extends Controller
     // Menampilkan pengumuman pada landing page
     public function welcome()
     {
-        $announcements = Announcement::where('released_at', '<', now())->paginate(30);
+        $announcements = Announcement::where('released_at', '<', now())
+            ->where('status_id', '=', AnnouncementStatus::ACTIVE)
+            ->paginate(30);
         return view('welcome', [
             'announcements' => $announcements,
         ]);

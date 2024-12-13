@@ -75,14 +75,17 @@
                     </header>
 
                     <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
+                        <div class="grid gap-6 lg:grid-rows-2 lg:gap-8">
                             <div class="container">
-                                @foreach ($users as $user)
-                                    {{ $user->name }}
+                                @foreach ($announcements as $announcement)
+                                    <div class="bg-opacity-95 bg-gray-900 rounded-lg shadow-md p-4 m-4">
+                                        <h2 class="text-xl font-semibold">{{ $announcement->title }}</h2>
+                                        <p class="text-gray-100">{{ $announcement->body }}</p>
+                                    </div>
                                 @endforeach
                             </div>
                             
-                            {{ $users->links() }}
+                            {{ $announcements->links() }}
                         </div>
                     </main>
 

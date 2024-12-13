@@ -24,8 +24,9 @@ class UserStatus extends Model
         Admin: account has admin role
     */
     const VERIFYING = 1;
-    const PENDING = 2;
-    const ACTIVE = 3;
+    const ACTIVE = 2;
+
+    const PENDING = 3;    
     const INACTIVE = 4;
     const ADMIN = 5;
 

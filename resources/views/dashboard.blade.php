@@ -41,7 +41,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-preset">
                     {{ __("Status pendaftaran anda saat ini: ") }}
-                    {{ Auth::user()-> }}
+                    @if (Auth::user()->applicant)
+                        {{ Auth::user()->applicant->getStatusMessage()}}
+                    @else
+                        {{ __("Belum mendaftar") }}
+                    @endif
                 </div>
             </div>
         </div>

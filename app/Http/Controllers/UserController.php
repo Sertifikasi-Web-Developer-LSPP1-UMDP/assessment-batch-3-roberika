@@ -10,12 +10,24 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('status_id', '!=', UserStatus::ADMIN)
-            ->latest()
-            ->orderBy('status', 'asc')
-            ->paginate(30);
+        // $other_users = User::select(['id', 'username', 'email', 'status_id', 'updated_at'])
+        //     ->where('status_id', '!=', UserStatus::ADMIN)
+        //     ->where('status_id', '!=', UserStatus::VERIFYING)
+        //     ->latest('updated_at');
+        // $verifying_users = User::select(['id', 'username', 'email', 'status_id', 'updated_at'])
+        //     ->where('status_id', '!=', UserStatus::ADMIN)
+        //     ->where('status_id', '=', UserStatus::VERIFYING)
+        //     ->latest('updated_at');
+
+        // $users = $verifying_users
+        //     ->union($other_users->getQuery());
+
+        $users = User::select(['id', 'username', 'email', 'status_id', 'updated_at', 'email_verified_at'])
+            ->where('status_id', '!=', UserStatus::ADMIN)
+            ->orderBy('status_id', 'asc')
+            ->latest('updated_at');
         return view('admin.users', [
-            'users' => $users,
+            'users' => $users->paginate(30),
         ]);
     }
 
@@ -25,7 +37,7 @@ class UserController extends Controller
         
         if (!$user) {
             return redirect()->route('admin.users.index')
-                ->with('error', 'Pengguna tidak ditemukan');
+                ->with('error', 'Akun pengguna tidak ditemukan');
         }
 
         $user->status_id = $request->status_id;
@@ -41,12 +53,13 @@ class UserController extends Controller
         
         if (!$user) {
             return redirect()->route('admin.users.index')
-                ->with('error', 'Pengguna tidak ditemukan');
+                ->with('error', 'Akun pengguna tidak ditemukan');
         }
 
-        $user->delete();
+        $user->status_id = UserStatus::INACTIVE;
+        $user->save();
 
         return redirect()->route('admin.users.index')
-            ->with('message', 'Pengguna berhasil dihapus');
+            ->with('message', 'Akun pengguna berhasil dihapus');
     }
 }

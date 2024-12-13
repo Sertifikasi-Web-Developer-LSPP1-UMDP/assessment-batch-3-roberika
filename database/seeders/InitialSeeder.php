@@ -16,8 +16,8 @@ class InitialSeeder extends Seeder
     public function run(): void
     {
         UserStatus::factory()->create([ 'status' => 'verifying', ]);
-        UserStatus::factory()->create([ 'status' => 'pending', ]);
         UserStatus::factory()->create([ 'status' => 'active', ]);
+        UserStatus::factory()->create([ 'status' => 'pending', ]);
         UserStatus::factory()->create([ 'status' => 'inactive', ]);
         UserStatus::factory()->create([ 'status' => 'admin', ]);
             
@@ -36,7 +36,7 @@ class InitialSeeder extends Seeder
         User::factory()->create([
             'username' => 'RobertAdmin',
             'password' => bcrypt('robertrobert'),
-            'status_id' => UserStatus::where('status', 'admin')->first()->id,
+            'status_id' => UserStatus::ADMIN,
             'email' => 'robatononihon@gmail.com',
             'email_verified_at' => now(),
         ]);
@@ -44,7 +44,7 @@ class InitialSeeder extends Seeder
         User::factory()->create([
             'username' => 'RobertUser',
             'password' => bcrypt('robertrobert'),
-            'status_id' => UserStatus::where('status', 'active')->first()->id,
+            'status_id' => UserStatus::ACTIVE,
             'email' => 'robert.antonius@mhs.mdp.ac.id',
             'email_verified_at' => now(),
         ]);

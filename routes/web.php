@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Guest
 // ..Welcome page untuk login, register, melihat pengumuman
-Route::get('/', [AnnouncementController::class, 'publication'])
+Route::get('/', [AnnouncementController::class, 'welcome'])
     ->name('welcome');
 
 // ..Perlu login dan verifikasi email
@@ -28,15 +29,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Non Admin
     Route::middleware(['nonadmin'])->group(function () {
         // ..Dashboard untuk menuju ke halaman pendaftaran, melihat pengumuman, melihat status pendaftaran
-        Route::get('/dashboard',function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'nonadmin'])
+            ->name('dashboard');
             
         // ..Halaman pendaftaran dan melihat status pendaftaran lengkap
-        Route::get('/application', function () {
-            return view('application');
-        })->name('application');
-        Route::post('/application', [ApplicantController::class, 'store'])
+        Route::middleware(['applicant'])->get('/application', [ApplicantController::class, 'create'])
+            ->name('application');
+        Route::middleware(['applicant'])->post('/application', [ApplicantController::class, 'store'])
             ->name('application.store');
     });
     
@@ -44,19 +43,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('/admin')->name('admin.')->middleware(['admin'])->group(function () {    
         Route::middleware('auth')->group(function () {
             // ..Dashboard khusus admin
-            Route::get('/dashboard',function () {
-                return view('admin.dashboard');
-            })->name('dashboard');
+            Route::get('/dashboard', [DashboardController::class, 'admin'])
+                ->name('dashboard');
 
             // ..Admin bisa melihat, mengubah status, dan menghapus user
             Route::prefix('/users')->name('users.')->group(function () {
                 Route::get('/', [UserController::class, 'index'])
                     ->name('index');
 
-                Route::patch('/{user}', [UserController::class, 'update'])
+                Route::patch('/{id}', [UserController::class, 'update'])
                     ->name('update');
 
-                Route::delete('/{user}', [UserController::class, 'destroy'])
+                Route::patch('/{id}', [UserController::class, 'destroy'])
                     ->name('destroy');
             });
 

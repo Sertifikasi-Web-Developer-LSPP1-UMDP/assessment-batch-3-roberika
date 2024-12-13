@@ -18,11 +18,19 @@
                         </x-nav-link>
                     </div>
 
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('application')" :active="request()->routeIs('application')">
-                            {{ __('Pendaftaran') }}
-                        </x-nav-link>
-                    </div>
+                    @if (!Auth::user()->hasApplied())
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('application')" :active="request()->routeIs('application')">
+                                {{ __('Pendaftaran') }}
+                            </x-nav-link>
+                        </div>
+                    @else
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link disabled>
+                                {{ __('Pendaftaran') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
                 @endif
 
                 @if (Auth::user()->isAdmin())

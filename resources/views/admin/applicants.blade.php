@@ -24,12 +24,41 @@
             </div>
         @endif
         
-        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg basis-1/2">
-            <div class="max-w-xl">
-                @foreach ($applicants as $applicant)
-                    {{ $applicant->name }}
-                @endforeach
+
+        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg mx-10">
+            <div class="overflow-x-auto">
+                <table class="min-w-full dark:text-gray-100">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2">Nama Calon Mahasiswa</th>
+                            <th class="px-4 py-2">Nomor Telepon</th>
+                            <th class="px-4 py-2">Status</th>
+                            <th class="px-4 py-2">Aksi</th>
+                        </tr>   
+                    </thead>
+                    <tbody>
+                        @foreach ($applicants as $applicant)
+                            <tr>
+                                <td class="border px-4 py-2">{{ $applicant->name }}</td>
+                                <td class="border px-4 py-2">{{ $applicant->phone_number }}</td>
+                                <td class="border px-4 py-2 text-center {{ $applicant->getStatusColor() }}">
+                                    {{ $applicant->getStatusLabel() }}
+                                </td>
+                                <td class="border px-4 py-2 text-center">
+                                    <form method="POST" action="{{ route('admin.applicants.update', [$applicant->id]) }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                            Verifikasi
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>    
             </div>
-        </div>
+            <br/>
+            {{ $applicants->links() }}   
+        </div>  
     </div>
 </x-app-layout>
