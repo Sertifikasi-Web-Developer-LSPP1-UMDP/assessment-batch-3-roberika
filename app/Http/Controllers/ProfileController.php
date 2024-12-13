@@ -49,7 +49,13 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        if ($user->status_id === UserStatus::ADMIN) {
+            return Redirect::route(route: 'admin.dashboard')
+                ->with('error', 'Akun admin tidak dapat dinonaktifkan melalui aplikasi');
+        }
+
         Auth::logout();
+        
 
         $user->status_id = UserStatus::INACTIVE;
         $user->save();

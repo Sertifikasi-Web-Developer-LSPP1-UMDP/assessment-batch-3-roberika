@@ -53,9 +53,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
                 Route::put('/{id}', [UserController::class, 'update'])
                     ->name('update');
-
-                Route::delete('/{id}', [UserController::class, 'destroy'])
-                    ->name('destroy');
             });
 
             // ..Admin bisa melihat, mengubah status, dan menghapus aplikan
@@ -65,9 +62,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
                 Route::put('/{applicant}', [ApplicantController::class, 'update'])
                     ->name('update');
-
-                Route::delete('/{applicant}', [ApplicantController::class, 'destroy'])
-                    ->name('destroy');
             });
 
             // ..Admin bisa mengelola dengan melihat, menambah, mengubah, dan menghapus pengumuman

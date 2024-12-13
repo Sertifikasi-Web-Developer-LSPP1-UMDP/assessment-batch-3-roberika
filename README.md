@@ -1,72 +1,122 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/UwpJJG2e)
 
+## Installation
+
+Tahap instalasi mengikuti tahap instalasi Laravel, yaitu:
+
+1. Clone repositori dari Github:
+
+    ```bash
+    git clone https://github.com/Sertifikasi-Web-Developer-LSPP1-UMDP/assessment-batch-3-roberika.git
+    ```
+
+2. Buka folder proyek:
+
+    ```bash
+    cd assessment-batch-3-roberika
+    ```
+
+3. Unduh dependencies dari proyek dengan Composer:
+
+    ```bash
+    composer install
+    ```
+
+4. Duplikat `.env.example` dan namakan dengan `.env`:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+5. Generasi APP_KEY baru pada `.env`:
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. Konfigurasi hubungan ke database pada `.env` (bebas selama dapat tersambung):
+
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=[your_database]
+    DB_USERNAME=[your_username]
+    DB_PASSWORD=[your_password]
+    ```
+
+7. Jalankan migrasi dan seeding database:
+
+    ```bash
+    php artisan migrate
+    php artisan db:seed --class=InitialSeeder
+    ```
+
+8. Jalankan server development:
+
+    ```bash
+    php artisan serve
+    ```
+
+9. Aplikasi dapat diakses pada `http://localhost:8000`.
+
+## Project Specification
+
+Proyek Laravel ini dilaksanakan sebagai pemenuhan sertifikasi Lembaga Sertifikasi Profesi bidang Pengembang Web. Proyek dilaksanakan berdasarkan spesifikasi yang telah ditentukan oleh lembaga sertifikasi pada dokumen FR.IA.04A. Berikut dilampirkan diagram use case dari proyek.
+
+![alt text](https://github.com/roberika/dataset/blob/main/usecasediagram.png?raw=true)
+
+Aplikasi menggunakan MySQL Community Version sebagai basis data. Berikut skema basis data yang digunakan.
+
+![alt text](https://github.com/roberika/dataset/blob/main/eerdiagram%20terbaru.png?raw=true)
+
+Aplikasi dapat digunakan oleh calon mahasiswa untuk:
+
+- Mendaftarkan akun pengguna baru bagi calon mahasiswa
+- Mendaftarkan calon mahasiswa baru
+- Melihat status pendaftaran calon mahasiswa baru pada akun pengguna
+- Melihat informasi dan pengumuman yang dipublikasi oleh admin pada aplikasi
+
+Aplikasi dapat digunakan oleh admin untuk:
+
+- Memverifikasi akun pengguna yang telah mendaftarkan akun
+- Mengelola status pendaftaran calon mahasiswa
+- Mengelola informasi dan pengumuman yang ditampilkan ke pengguna
+
 ## Routes
-# User
 
+Rute akses aplikasi dapat dibagi menjadi 3 kategori untuk otentikasi dan otoritasi, untuk penggunaan oleh calon mahasiswa, dan untuk penggunaan oleh admin. Rute terkait pengaturan akun terdapat pada `routes/auth.php`. Rute terkait penggunaan terdapat pada `routes/web.php` dengan rute tanpa awalan (`/dashboard`, `/application`, dan sebagainya) digunakan untuk penggunaan oleh calon mahasiswa dan rute yang diawali oleh `admin/` untuk penggunaan oleh admin. Berikut penjelasan bagi rute-rute tersebut:
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+- `GET /welcome`: Halaman awal
+- `GET /profile`: Halaman profile pengguna
+- `PATCH /profile`: Update akun pengguna
+- `DELETE /profile`: Nonaktifkan akun pengguna
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+- `GET /dashboard`: Dashboard calon mahasiswa
+- `GET /application`: Halaman pendaftaran calon mahasiswa
+- `post /application`: Menyimpan data calon mahasiswa
 
-## About Laravel
+- `GET /admin/dashboard`: Dashboard admin
+- `GET /admin/users`: Daftar akun pengguna
+- `PUT /admin/users/{id}`: Verifikasi akun pengguna
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- `GET /admin/applicants`: Daftar calon mahasiswa
+- `PUT /admin/applicants/{id}`: Ubah status pendaftaran calon mahasiswa
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- `GET /admin/announcements`: Daftar penngumuman
+- `GET /admin/announcements/create`: Halaman membuat pengumuman baru
+- `POST /admin/announcements/`: Simpan pengumuman baru
+- `PUT /admin/announcements/{id}`: Simpan perubahan pada pengumuman
+- `DELETE /admin/announcements/{id}`: Nonaktifkan pengumuman
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Dependencies
 
-## Learning Laravel
+Ketergantungan utama pada proyek ini adalah pada beberapa pustaka ini:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP v8
+- Laravel v11
+- Vite v6
+- Laravel Breeze v11
+- Tailwind v3
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Spesifikasi versi lengkap ada pada [composer.json](https://github.com/Sertifikasi-Web-Developer-LSPP1-UMDP/assessment-batch-3-roberika/blob/main/composer.json) dan pada [package.json](https://github.com/Sertifikasi-Web-Developer-LSPP1-UMDP/assessment-batch-3-roberika/blob/main/package.json).
