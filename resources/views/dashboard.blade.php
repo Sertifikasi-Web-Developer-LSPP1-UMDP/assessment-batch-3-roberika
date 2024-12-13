@@ -31,23 +31,44 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-preset">
-                    {{ __("Welcome, Ad Min!") }}
+                    {{ __("Selamat datang,") }}
+                    @if (Auth::user()->applicant)
+                        {{ Auth::user()->applicant->name }}
+                    @else
+                        {{ Auth::user()->username }}
+                    @endif
+                    {{ __("!") }}
                 </div>
             </div>
         </div>
 
         
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-preset">
-                    {{ __("Status pendaftaran anda saat ini: ") }}
-                    @if (Auth::user()->applicant)
-                        {{ Auth::user()->applicant->getStatusMessage()}}
-                    @else
-                        {{ __("Belum mendaftar") }}
-                    @endif
+        @if (Auth::user()->applicant)
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+                <div class="{{ Auth::user()->applicant->getStatusMessageColor() }} overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-preset">
+                        <div>
+                            {{ __("Status pendaftaran anda saat ini: ") }}
+                        </div>
+                        <div class="text-3xl {{ Auth::user()->applicant->getStatusColor() }}">
+                            {{ Auth::user()->applicant->getStatusMessage()}}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        @else
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-preset">
+                        <div>
+                            {{ __("Status pendaftaran anda saat ini: ") }}
+                        </div>
+                        <div class="text-3xl">
+                            {{ __("Belum mendaftar") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </x-app-layout>

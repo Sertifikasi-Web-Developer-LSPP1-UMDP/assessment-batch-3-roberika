@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\AdminRoleMiddleware::class,
             'nonadmin' => \App\Http\Middleware\NonAdminRoleMiddleware::class,
             'applicant' => \App\Http\Middleware\ApplicationMiddleware::class,
+            'noback' => \App\Http\Middleware\PreventBackButtonMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

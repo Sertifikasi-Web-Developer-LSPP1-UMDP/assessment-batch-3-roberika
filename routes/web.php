@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     
     // Admin
-    Route::prefix('/admin')->name('admin.')->middleware(['admin'])->group(function () {    
+    Route::prefix('/admin')->name('admin.')->middleware(['admin', 'noback'])->group(function () {    
         Route::middleware('auth')->group(function () {
             // ..Dashboard khusus admin
             Route::get('/dashboard', [DashboardController::class, 'admin'])

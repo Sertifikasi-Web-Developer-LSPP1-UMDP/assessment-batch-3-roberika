@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\UserStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -50,7 +51,8 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        $user->delete();
+        $user->status_id = UserStatus::INACTIVE;
+        $user->save();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

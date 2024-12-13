@@ -14,24 +14,4 @@
     .card-preset {
         @apply p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg
     }
-
-    .userstatus-pending {
-        @apply text-yellow-400
-    }
-
-    .userstatus-verifying {
-        @apply text-yellow-700
-    }
-
-    .userstatus-inactive {
-        @apply text-gray-400
-    }
-
-    .userstatus-active {
-        @apply text-green-400
-    }
-
-    .userstatus-admin {
-        @apply text-blue-600
-    }
 }

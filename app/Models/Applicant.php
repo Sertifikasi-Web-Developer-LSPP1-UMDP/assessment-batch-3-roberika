@@ -53,6 +53,19 @@ class Applicant extends Model
             ApplicantStatus::INACTIVE => 'text-gray-400',
         };
     }
+    
+    public function getStatusMessageColor()
+    {
+        return match ($this->status_id) {
+            ApplicantStatus::VERIFYING => 'bg-yellow-800',
+            ApplicantStatus::ADMINISTRATION => 'bg-blue-700',
+            ApplicantStatus::ASSESSMENT => 'bg-blue-900',
+            ApplicantStatus::EVALUATION => 'bg-blue-900',
+            ApplicantStatus::REJECTED => 'bg-red-900',
+            ApplicantStatus::ACCEPTED => 'bg-green-800',
+            ApplicantStatus::INACTIVE => 'bg-gray-800',
+        };
+    }
 
     public function user() 
     {
