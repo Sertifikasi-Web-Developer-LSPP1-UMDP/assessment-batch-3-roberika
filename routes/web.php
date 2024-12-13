@@ -51,10 +51,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::get('/', [UserController::class, 'index'])
                     ->name('index');
 
-                Route::patch('/{id}', [UserController::class, 'update'])
+                Route::put('/{id}', [UserController::class, 'update'])
                     ->name('update');
 
-                Route::patch('/{id}', [UserController::class, 'destroy'])
+                Route::delete('/{id}', [UserController::class, 'destroy'])
                     ->name('destroy');
             });
 
@@ -63,7 +63,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::get('/', [ApplicantController::class, 'index'])
                     ->name('index');
 
-                Route::patch('/{applicant}', [ApplicantController::class, 'update'])
+                Route::put('/{applicant}', [ApplicantController::class, 'update'])
                     ->name('update');
 
                 Route::delete('/{applicant}', [ApplicantController::class, 'destroy'])
@@ -84,7 +84,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::get('/{announcement}/edit', [AnnouncementController::class, 'edit'])
                     ->name('edit');
 
-                Route::patch('/{announcement}', [AnnouncementController::class, 'update'])
+                Route::put('/{announcement}', [AnnouncementController::class, 'update'])
                     ->name('update');
 
                 Route::delete('/{announcement}', [AnnouncementController::class, 'destroy'])

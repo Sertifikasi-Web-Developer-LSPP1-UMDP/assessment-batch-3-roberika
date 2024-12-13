@@ -10,32 +10,15 @@
     </x-slot>
         
     <div class="py-12">
-        @if (session('message'))
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-preset">
-                        {{ session('message') }}
-                    </div>
-                </div>
-            </div>
-        @elseif (session('error'))
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-preset">
-                        {{ session('error') }}
-                    </div>
-                </div>
-            </div>
-        @endif
+        <x-message-handler/>
 
-        <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg mx-10">
+        <div class="max-w-7xl mx-auto p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
             <div class="overflow-x-auto">
                 <table class="min-w-full dark:text-gray-100">
                     <thead>
                         <tr>
                             <th class="px-4 py-2">Nama Pengguna</th>
                             <th class="px-4 py-2">Email</th>
-                            <th class="px-4 py-2">Verifikasi Email</th>
                             <th class="px-4 py-2">Status</th>
                             <th class="px-4 py-2">Aksi</th>
                         </tr>   
@@ -45,7 +28,6 @@
                             <tr>
                                 <td class="border px-4 py-2">{{ $user->username }}</td>
                                 <td class="border px-4 py-2">{{ $user->email }}</td>
-                                <td class="border px-4 py-2 text-center">{{ $user->getEmailVerificationStatus() }}</td>
                                 <td class="border px-4 py-2 text-center {{ $user->getStatusColor() }}">
                                     {{ $user->getStatusLabel() }}
                                 </td>
@@ -53,7 +35,7 @@
                                     @if ( $user->isNotAdminVerified())
                                         <form method="POST" action="{{ route('admin.users.update', [$user->id]) }}" enctype="multipart/form-data">
                                             @csrf
-                                            @method('patch')
+                                            @method('PUT')
                                             <input name="status_id" type="hidden" value="{{ UserStatus::ACTIVE }}">
                                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                                 Verifikasi

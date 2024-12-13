@@ -41,7 +41,30 @@ class ApplicantStatus extends Model
         self::ACCEPTED,
         self::INACTIVE,
     ];
+
+    const STATUS_LABELS = [
+        self::VERIFYING,
+        self::ADMINISTRATION,
+        self::ASSESSMENT,
+        self::EVALUATION,
+        self::REJECTED,
+        self::ACCEPTED,
+        self::INACTIVE,
+    ];
     
+    public static function getStatusLabel($status_id)
+    {
+        return match ($status_id) {
+            self::VERIFYING => 'Verifikasi',
+            self::ADMINISTRATION => 'Administrasi',
+            self::ASSESSMENT => 'Asesi',
+            self::EVALUATION => 'Evaluasi',
+            self::REJECTED => 'Ditolak',
+            self::ACCEPTED => 'Diterima',
+            self::INACTIVE => 'Inaktif',
+        };
+    }
+
     protected $fillable = [
         'status' => 'string',
     ];
