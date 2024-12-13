@@ -75,15 +75,40 @@
                     </header>
 
                     <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-rows-2 lg:gap-8">
-                            <div class="container">
-                                @foreach ($announcements as $announcement)
-                                    <div class="bg-opacity-95 bg-gray-900 rounded-lg shadow-md p-4 m-4">
-                                        <h2 class="text-xl font-semibold">{{ $announcement->title }}</h2>
-                                        <p class="text-gray-100">{{ $announcement->body }}</p>
-                                    </div>
-                                @endforeach
-                            </div>
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            @foreach ($announcements as $announcement)
+                                <div id="{{ $announcement->id }}" class="hidden target:block p-6 text-preset bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" >   
+                                    <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
+                                    <br/>
+                                    @if ($announcement->image)
+                                        <img src="{{ asset('images/' . $announcement->image) }}" alt="Announcement Image" class="mt-4">
+                                        <br/>
+                                    @endif
+                                    <p class="text-gray-600">{{ $announcement->summary }}</p>
+                                    <br/>   
+                                    <p >{{ $announcement->body }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        </br>
+
+                        <div class="grid grid-cols-2 col-span-2 gap-6 max-w-7xl mx-auto sm:px-6 lg:px-8">    
+                            @foreach ($announcements as $announcement)
+                                <a href="#{{ $announcement->id }}" class="p-6 text-preset bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">   
+                                    <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
+                                    <br/>
+                                    @if ($announcement->image)
+                                        <img src="{{ asset('images/' . $announcement->image) }}" alt="Announcement Image" class="mt-4">
+                                        <br/>
+                                    @endif
+                                    <p class="text-gray-600">{{ $announcement->summary }}</p>
+                                </a>
+                            @endforeach
+                        </div>
+
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                            <br/>
                             
                             {{ $announcements->links() }}
                         </div>

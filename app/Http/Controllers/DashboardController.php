@@ -17,7 +17,7 @@ class DashboardController extends Controller
             ->where('status_id', '=', AnnouncementStatus::ACTIVE)
             ->paginate(30);
         return view('dashboard', [
-            'announcements' => $announcements,
+            'announcements' => $announcements,  
         ]);
     }
 
