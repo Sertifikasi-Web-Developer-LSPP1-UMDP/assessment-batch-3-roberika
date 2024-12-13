@@ -107,11 +107,11 @@
                             @endforeach
                         </div>
 
-                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                            <br/>
-                            
-                            {{ $announcements->links() }}
-                        </div>
+                            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                                <br/>
+                                
+                                {{ $announcements->links() }}
+                            </div>
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">
