@@ -71,10 +71,10 @@
                 <div id="{{ $announcement->id }}" class="hidden target:block p-6 text-preset bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" >   
                     <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
                     <br/>
-                    @if ($announcement->image_url)
-                        <img src="{{ asset('img/announcements/' . $announcement->image_url) }}" alt="{{ $announcement->title }}" class="mt-4">
-                        <br/>
-                    @endif
+                        @if ($announcement->image_url)
+                            <img src="{{ $announcement->image_url }}" alt="{{ $announcement->title }}" class="mt-4 w-full">
+                            <br/>
+                        @endif
                     <p class="text-gray-600">{{ $announcement->summary }}</p>
                     <br/>   
                     <p >{{ $announcement->body }}</p>
@@ -89,10 +89,10 @@
                 <a href="#{{ $announcement->id }}" class="p-6 text-preset bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">   
                     <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
                     <br/>
-                    @if ($announcement->image)
-                        <img src="{{ asset('images/' . $announcement->image) }}" alt="Announcement Image" class="mt-4">
-                        <br/>
-                    @endif
+                        @if ($announcement->image_url)
+                            <img src="{{ $announcement->image_url }}" alt="{{ $announcement->title }}" class="mt-4 w-full">
+                            <br/>
+                        @endif
                     <p class="text-gray-600">{{ $announcement->summary }}</p>
                 </a>
             @endforeach

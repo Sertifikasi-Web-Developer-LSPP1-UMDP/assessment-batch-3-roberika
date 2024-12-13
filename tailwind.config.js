@@ -9,7 +9,7 @@ export default {
     safelist: [
         // ...usedColors.map(function (c) { return usedColorDensities.map(function (d) { return `text-${c}-${d}`; } ) }),
         
-        { pattern: /(text|bg)-(red|green|blue|yellow|gray|slate)-(50|100|200|300|400|500|600|700|800|900)/, },
+        { pattern: /(text|bg)-(red|green|blue|yellow|gray|slate|orange)-(50|100|200|300|400|500|600|700|800|900)/, },
     ],
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',

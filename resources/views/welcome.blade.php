@@ -27,13 +27,12 @@
         @endif
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            <img id="background" class="absolute -left-20 top-0 max-w-[877px]" src="https://laravel.com/assets/img/welcome/background.svg" alt="Laravel background" />
+        <div class="bg-gradient-to-r from-orange-700 to-blue-500 text-black/50  dark:text-white/50">
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
+                    <header class="grid grid-cols-2 items-center gap-2 lg:grid-cols-3">
                         <div class="flex lg:justify-center lg:col-start-2">
-                            <img src="{{ asset('img/university-education-logo-design-template-free-vector-removebg-preview.png') }}" class="h-12 w-auto lg:h-16" height="316" width="316"/>
+                            <img src="{{ asset('img/university-education-logo-design-template-free-vector-removebg-preview.png') }}" class="sm:rounded-lg h-24 w-auto lg:h-32"/>
                         </div>
                         @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
@@ -41,14 +40,14 @@
                                     @if(Auth::user()->isAdmin())
                                         <a
                                             href="{{ url('/admin/dashboard') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white text-2xl"
                                         >
                                             Dashboard
                                         </a>
                                     @else
                                         <a
                                             href="{{ url('/dashboard') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white text-2xl"
                                         >
                                             Dashboard
                                         </a>
@@ -56,7 +55,7 @@
                                 @else
                                     <a
                                         href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white text-2xl"
                                     >
                                         Log in
                                     </a>
@@ -64,7 +63,7 @@
                                     @if (Route::has('register'))
                                         <a
                                             href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white text-2xl"
                                         >
                                             Register
                                         </a>
@@ -76,16 +75,18 @@
 
                     <main class="mt-6">
                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                            <img src="{{ asset('img/2024-12-13 17.09.38 www.binadarma.ac.id 147dbb28333b.png') }}" alt="{{ $announcement->title }}" class="mt-4">
+                            <img src="{{ asset('img/2024-12-13 17.09.38 www.binadarma.ac.id 147dbb28333b.png') }}" class="mt-4">
                         </div>
+
+                        </br>
 
                         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             @foreach ($announcements as $announcement)
                                 <div id="{{ $announcement->id }}" class="hidden target:block p-6 text-preset bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg" >   
                                     <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
                                     <br/>
-                                    @if ($announcement->image)
-                                        <img src="{{ asset('images/' . $announcement->image) }}" alt="Announcement Image" class="mt-4">
+                                    @if ($announcement->image_url)
+                                        <img src="{{ $announcement->image_url }}" alt="{{ $announcement->title }}" class="mt-4 w-full">
                                         <br/>
                                     @endif
                                     <p class="text-gray-600">{{ $announcement->summary }}</p>
@@ -103,7 +104,7 @@
                                     <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
                                     <br/>
                                     @if ($announcement->image_url)
-                                        <img src="{{ asset('img/announcements/' . $announcement->image_url) }}" alt="{{ $announcement->title }}" class="mt-4">
+                                        <img src="{{ $announcement->image_url }}" alt="{{ $announcement->title }}" class="mt-4 w-full">
                                         <br/>
                                     @endif
                                     <p class="text-gray-600">{{ $announcement->summary }}</p>

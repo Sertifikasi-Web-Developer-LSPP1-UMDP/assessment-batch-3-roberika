@@ -90,15 +90,7 @@ class AnnouncementController extends Controller
             return redirect()->route('admin.announcements.index')
                 ->with('error', 'Pengumuman tidak ditemukan');
         }
-
-        $announcement->update([
-            'image_url' => 'img/announcements'.$imageName,
-        ]);
-
-        if ($request->file != ''){   
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path().'/img/announcements/', $imageName);
-        }
+        
         $announcement->update([
             'title' => $validatedData['title'],
             'summary' => $validatedData['summary'],
@@ -106,6 +98,15 @@ class AnnouncementController extends Controller
             'released_at' => $validatedData['released_at'],
             'status_id' => $validatedData['status_id'],
         ]);
+
+        if ($request->file != ''){   
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path().'/img/announcements/', $imageName);
+            
+            $announcement->update([
+                'image_url' => 'img/announcements'.$imageName,
+            ]);
+        }
 
         return redirect()->route('admin.announcements.index')
             ->with('message', 'Pengumuman berhasil diperbaharui');
