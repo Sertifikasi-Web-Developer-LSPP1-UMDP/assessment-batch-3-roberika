@@ -19,7 +19,7 @@ class ApplicationMiddleware
         // Tolak jika bukan user atau akun inaktif, menunggu verifikasi email, atau menunggu verifikasi admin
         if (!Auth::user() || Auth::user()->isInactive()) {
             return redirect(route('dashboard', absolute: false))
-                ->with('error', 'Akun belum dapat digunakan untuk pendaftaran');
+                ->with('error', 'Akun belum dapat digunakan untuk melakukan pendaftaran');
         }
         // Tolak jika admin
         if (Auth::user()->isAdmin()) {

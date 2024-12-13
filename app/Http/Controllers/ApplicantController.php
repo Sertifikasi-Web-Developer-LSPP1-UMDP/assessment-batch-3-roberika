@@ -65,7 +65,6 @@ class ApplicantController extends Controller
     public function update(Request $request, $id)
     {
         $applicant = Applicant::find($id);
-        
         if (!$applicant) {
             return redirect()->route('admin.applicants.index')
                 ->with('error', 'Calon mahasiswa tidak ditemukan');
@@ -81,7 +80,6 @@ class ApplicantController extends Controller
     public function destroy($id)
     {
         $applicant = Applicant::find($id);
-        
         if (!$applicant) {
             return redirect()->route('admin.applicants.index')
                 ->with('error', 'Calon mahasiswa tidak ditemukan');

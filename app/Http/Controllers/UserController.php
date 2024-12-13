@@ -10,18 +10,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        // $other_users = User::select(['id', 'username', 'email', 'status_id', 'updated_at'])
-        //     ->where('status_id', '!=', UserStatus::ADMIN)
-        //     ->where('status_id', '!=', UserStatus::VERIFYING)
-        //     ->latest('updated_at');
-        // $verifying_users = User::select(['id', 'username', 'email', 'status_id', 'updated_at'])
-        //     ->where('status_id', '!=', UserStatus::ADMIN)
-        //     ->where('status_id', '=', UserStatus::VERIFYING)
-        //     ->latest('updated_at');
-
-        // $users = $verifying_users
-        //     ->union($other_users->getQuery());
-
         $users = User::select(['id', 'username', 'email', 'status_id', 'updated_at', 'email_verified_at'])
             ->where('status_id', '!=', UserStatus::ADMIN)
             ->orderBy('status_id', 'asc')
@@ -34,7 +22,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        
         if (!$user) {
             return redirect()->route('admin.users.index')
                 ->with('error', 'Akun pengguna tidak ditemukan');
@@ -50,7 +37,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        
         if (!$user) {
             return redirect()->route('admin.users.index')
                 ->with('error', 'Akun pengguna tidak ditemukan');

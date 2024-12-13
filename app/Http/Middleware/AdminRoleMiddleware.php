@@ -19,7 +19,7 @@ class AdminRoleMiddleware
         // Tolak jika bukan user atau user adalah bukan admin
         if (!Auth::user() || Auth::user()->isNonAdmin()) {
             return redirect(route('dashboard', absolute: false))
-                ->with('message', 'Laman hanya bisa diakses oleh admin');;
+                ->with('error', 'Laman hanya bisa diakses oleh admin');;
         }
         return $next($request);
     }

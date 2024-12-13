@@ -66,6 +66,10 @@ class AnnouncementController extends Controller
     public function edit($id)
     {
         $announcement = Announcement::find($id);
+        if (!$announcement) {
+            return redirect()->route('admin.announcements.index')
+                ->with('error', 'Pengumuman tidak ditemukan');
+        }
 
         return view('admin.announcements.edit', compact('announcement'));
     }
@@ -82,6 +86,11 @@ class AnnouncementController extends Controller
         ]); 
 
         $announcement = Announcement::find($id);
+        if (!$announcement) {
+            return redirect()->route('admin.announcements.index')
+                ->with('error', 'Pengumuman tidak ditemukan');
+        }
+
         $announcement->update([
             'image_url' => 'img/announcements'.$imageName,
         ]);
@@ -106,6 +115,11 @@ class AnnouncementController extends Controller
     public function destroy($id)
     {
         $announcement = Announcement::find($id);
+        if (!$announcement) {
+            return redirect()->route('admin.announcements.index')
+                ->with('error', 'Pengumuman tidak ditemukan');
+        }
+
         $announcement->status_id = AnnouncementStatus::INACTIVE;
         $announcement->save();
 
