@@ -23,17 +23,17 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        $users = User::latest()->take(5)->get();
+        $users = User::latest('updated_at')->take(5)->get();
         $user_count = User::count();
         $pending_user_count = User::where('email_verified_at', '=', null)->count();
         $unverified_user_count = User::where('status_id', '=', UserStatus::VERIFYING)->count();
 
-        $announcements = Announcement::latest()->take(5)->get();
+        $announcements = Announcement::latest('updated_at')->take(5)->get();
         $announcement_count = Announcement::count();
         $unfinished_announcement_count = Announcement::where('status_id', '=', AnnouncementStatus::DRAFT)->count();
         $scheduled_announcement_count = Announcement::where('released_at', '>', now())->count();
 
-        $applicants = Applicant::latest()->take(5)->get();
+        $applicants = Applicant::latest('updated_at')->take(5)->get();
         $applicant_count = Applicant::count();
         $unprocessed_applicant_count = Applicant::where('status_id', '=', ApplicantStatus::VERIFYING)
             ->orWhere('status_id', '=', ApplicantStatus::ADMINISTRATION)

@@ -31,6 +31,15 @@ class AnnouncementStatus extends Model
         self::ACTIVE,
     ];
     
+    public static function getStatusLabel($status_id)
+    {
+        return match ($status_id) {
+            self::DRAFT => 'Draft',
+            self::INACTIVE => 'Inactive',
+            self::ACTIVE => 'Active',
+        };
+    }
+
     protected $fillable = [
         'status' => 'string',
     ];

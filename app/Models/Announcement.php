@@ -32,6 +32,14 @@ class Announcement extends Model
         };
     }
 
+    public function getPublicationDate()
+    {
+        if ($this->released_at == null) {
+            return;
+        }
+        return date('Y-m-d', strtotime($this->released_at));
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -41,7 +49,7 @@ class Announcement extends Model
         'title',
         'summary',
         'body',
-        'status',
+        'status_id',    
         'released_at',
     ];
 }

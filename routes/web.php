@@ -81,13 +81,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::post('/', [AnnouncementController::class, 'store'])
                     ->name('store');
 
-                Route::get('/{announcement}/edit', [AnnouncementController::class, 'edit'])
+                Route::get('/{id}', [AnnouncementController::class, 'edit'])
                     ->name('edit');
 
-                Route::put('/{announcement}', [AnnouncementController::class, 'update'])
+                Route::put('/{id}', [AnnouncementController::class, 'update'])
                     ->name('update');
 
-                Route::delete('/{announcement}', [AnnouncementController::class, 'destroy'])
+                Route::delete('/{id}', [AnnouncementController::class, 'destroy'])
                     ->name('destroy');
             });
         });
