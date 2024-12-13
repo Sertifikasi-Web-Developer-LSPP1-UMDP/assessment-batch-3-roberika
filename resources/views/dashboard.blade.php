@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            
+        @else
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-preset">
@@ -54,19 +54,44 @@
                     </div>
                 </div>
             </div>
-        @else
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-preset">
-                        <div>
-                            {{ __("Status pendaftaran anda saat ini: ") }}
-                        </div>
-                        <div class="text-3xl">
-                            {{ __("Belum mendaftar") }}
-                        </div>
-                    </div>
+        @endif
+
+        <br/>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-preset">
+                {{  __("Pengumuman") }}
                 </div>
             </div>
-        @endif
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 col-span-2 gap-6 grow">
+                @foreach ($announcements as $announcement)
+                    <a href="#{{ $announcement->id }}" class="p-6 text-preset bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-l">   
+                        <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
+                        <br/>
+                        @if ($announcement->image)
+                            <img src="{{ asset('images/' . $announcement->image) }}" alt="Announcement Image" class="mt-4">
+                            <br/>
+                        @endif
+                        <p class="text-gray-600">{{ $announcement->summary }}</p>
+                    </a>
+                @endforeach
+            </div>
+            @foreach ($announcements as $announcement)
+                <div id="{{ $announcement->id }}" class="hidden target:block p-6 text-preset bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-l" >   
+                    <h3 class="text-xl font-semibold">{{ $announcement->title }}</h3>
+                    <br/>
+                    @if ($announcement->image)
+                        <img src="{{ asset('images/' . $announcement->image) }}" alt="Announcement Image" class="mt-4">
+                        <br/>
+                    @endif
+                    <p class="text-gray-600">{{ $announcement->summary }}</p>
+                    <br/>   
+                    <p >{{ $announcement->body }}</p>
+                </div>
+            @endforeach
+        </div>
     </div>
 </x-app-layout>

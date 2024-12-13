@@ -13,7 +13,12 @@ class DashboardController extends Controller
 {
     public function nonadmin()
     {
-        return view('dashboard');
+        $announcements = Announcement::where('released_at', '<', now())
+            ->where('status_id', '=', AnnouncementStatus::ACTIVE)
+            ->paginate(30);
+        return view('dashboard', [
+            'announcements' => $announcements,
+        ]);
     }
 
     public function admin()
