@@ -24,12 +24,14 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $status_id = fake()->randomElement(UserStatus::STATUSES);
+        // $status_id = fake()->randomElement(UserStatus::STATUSES);
         return [
             'username' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => $status_id == UserStatus::PENDING ? null : now(),
-            'status_id' => $status_id,
+            // 'email_verified_at' => $status_id == UserStatus::PENDING ? null : now(),
+            // 'status_id' => $status_id,
+            'email_verified_at' => now(),
+            'status_id' => fake()->randomElement([UserStatus::INACTIVE, UserStatus::ACTIVE, UserStatus::VERIFYING]),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

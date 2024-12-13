@@ -19,17 +19,17 @@ class ApplicantFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'gender' => fake()->randomElement(['male', 'female']),  
+            'gender' => fake()->randomElement(['Laki-laki', 'Perempuan']),  
             'birthplace' => fake()->city(),
             'birthdate' => fake()->dateTime('-17 years'),
-            'religion' => fake()->randomElement(['buddhism', 'christianity', 'islam', 'hinduism', 'confucianism', 'others']),
+            'religion' => fake()->randomElement(['Buddha', 'Kristen', 'Islam', 'Hindu', 'Konghucu', 'Katolik', '']),
             'citizenship' => fake()->country(),
             'address' => fake()->address(),
             'phone_number' => fake()->unique()->numerify('08##-####-####'),
             'guardian_phone_number' => fake()->unique()->numerify('08##-####-####'),
             'school' => fake()->company(),
-            'school_path' => fake()->randomElement(['ipa', 'ips']),
-            'major' => fake()->randomElement(['science', 'social']),
+            'school_path' => fake()->randomElement(['IPA', 'IPS']),
+            'major' => fake()->randomElement(['Informatika', 'Sistem Informasi', 'Teknik Elektro', 'Manajemen Informatika', 'Manajemen', 'Akutansi']),
             'reason' => fake()->sentence(),
             'status_id' => fake()->randomElement(ApplicantStatus::STATUSES),
         ];

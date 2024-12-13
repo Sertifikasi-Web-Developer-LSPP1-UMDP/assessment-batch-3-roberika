@@ -17,12 +17,11 @@ class AnnouncementFactory extends Factory
      */
     public function definition(): array
     {
-        $status_id = fake()->randomElement(AnnouncementStatus::STATUSES);
         return [
             'title' => fake()->sentence(),
             'summary' => fake()->paragraph(2),
             'body' => fake()->paragraphs(3, true),
-            'status_id' => $status_id,
+            'status_id' => fake()->randomElement(AnnouncementStatus::STATUSES),
             'image_url' => asset('img/announcements/'.fake()->randomElement([
                 'Campus-Digital_UQAM_5-EN-1.jpg',
                 'CaseStudies_Lyft14.jpg',
