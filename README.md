@@ -64,11 +64,11 @@ Tahap instalasi mengikuti tahap instalasi Laravel, yaitu:
 
 Proyek Laravel ini dilaksanakan sebagai pemenuhan sertifikasi Lembaga Sertifikasi Profesi bidang Pengembang Web. Proyek dilaksanakan berdasarkan spesifikasi yang telah ditentukan oleh lembaga sertifikasi pada dokumen FR.IA.04A. Berikut dilampirkan diagram use case dari proyek.
 
-![alt text](https://github.com/roberika/dataset/blob/main/usecasediagram.png?raw=true)
+![Diagram Use Case](https://github.com/roberika/dataset/blob/main/usecasediagram.png?raw=true)
 
 Aplikasi menggunakan MySQL Community Version sebagai basis data. Berikut skema basis data yang digunakan.
 
-![alt text](https://github.com/roberika/dataset/blob/main/eerdiagram%20terbaru.png?raw=true)
+![Diagram Relasi Database](https://github.com/roberika/dataset/blob/main/eerdiagram%20terbaru.png?raw=true)
 
 Aplikasi dapat digunakan oleh calon mahasiswa untuk:
 
@@ -86,6 +86,12 @@ Aplikasi dapat digunakan oleh admin untuk:
 ## Routes
 
 Rute akses aplikasi dapat dibagi menjadi 3 kategori untuk otentikasi dan otoritasi, untuk penggunaan oleh calon mahasiswa, dan untuk penggunaan oleh admin. Rute terkait pengaturan akun terdapat pada `routes/auth.php`. Rute terkait penggunaan terdapat pada `routes/web.php` dengan rute tanpa awalan (`/dashboard`, `/application`, dan sebagainya) digunakan untuk penggunaan oleh calon mahasiswa dan rute yang diawali oleh `admin/` untuk penggunaan oleh admin. Berikut penjelasan bagi rute-rute tersebut:
+
+- `GET \register`: Halaman registrasi akun
+- `POST \register`: Daftarkan akun pengguna
+- `GET \login`: Halaman login pengguna
+- `POST \login`: Melakukan login akun
+- `POST \logout`: Melakukan logout akun
 
 - `GET /welcome`: Halaman awal
 - `GET /profile`: Halaman profile pengguna
@@ -120,6 +126,46 @@ Ketergantungan utama pada proyek ini adalah pada beberapa pustaka ini:
 - Tailwind v3
 
 Spesifikasi versi lengkap ada pada [composer.json](https://github.com/Sertifikasi-Web-Developer-LSPP1-UMDP/assessment-batch-3-roberika/blob/main/composer.json) dan pada [package.json](https://github.com/Sertifikasi-Web-Developer-LSPP1-UMDP/assessment-batch-3-roberika/blob/main/package.json).
+
+## Screenshots
+
+Berikut adalah beberapa tangkapan layar aplikasi untuk menunjukkan tampilan dari aplikasi:
+
+`/`
+![Halaman Welcome](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0005.jpg?raw=true)
+
+`/login`
+![Halaman Login](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0008.jpg?raw=true)
+
+`/register`
+![Halaman Register](https://github.com/roberika/dataset/blob/main/Screenshot 2024-12-14 104443.png?raw=true)
+
+`/profile`
+![Halaman Profile](https://github.com/roberika/dataset/blob/main/Screenshot 2024-12-14 104058.png?raw=true)
+
+`/dashboard`
+![Halaman Dashboard](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0004.jpg?raw=true)
+
+`/application`
+![Halaman Pendaftaran](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0010.jpg?raw=true)
+
+`/admin/dashboard`
+![Halaman Dashboard Admin](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0009.jpg?raw=true)
+
+`/admin/users`
+![Halaman Kelola Pengguna](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0003.jpg?raw=true)
+
+`/admin/applicants`
+![Halaman Kelola Pendaftaran](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0003.jpg?raw=true)
+
+`/admin/announcements`
+![Halaman Kelola Pengumuman](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0011.jpg?raw=true)
+
+`/admin/announcements/create`
+![Halaman Tambah Pengumuman](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0014.jpg?raw=true)
+
+`/admin/announcements/{id}`
+![Halaman Setel Pengumuman](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0015.jpg?raw=true)
 
 ## Presentation
 
