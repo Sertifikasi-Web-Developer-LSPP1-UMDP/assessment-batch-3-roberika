@@ -131,40 +131,51 @@ Spesifikasi versi lengkap ada pada [composer.json](https://github.com/Sertifikas
 
 Berikut adalah beberapa tangkapan layar aplikasi untuk menunjukkan tampilan dari aplikasi:
 
-`/`
+`/` - Halaman Welcome
+
 ![Halaman Welcome](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0005.jpg?raw=true)
 
-`/login`
+`/login` - Halaman Login
+
 ![Halaman Login](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0008.jpg?raw=true)
 
-`/register`
-![Halaman Register](https://github.com/roberika/dataset/blob/main/Screenshot 2024-12-14 104443.png?raw=true)
+`/register` - Halaman Register
 
-`/profile`
-![Halaman Profile](https://github.com/roberika/dataset/blob/main/Screenshot 2024-12-14 104058.png?raw=true)
+![Halaman Register](https://github.com/roberika/dataset/blob/main/Screenshot%202024-12-14%20104443.png?raw=true)
 
-`/dashboard`
+`/profile` - Halaman Profile
+
+![Halaman Profile](https://github.com/roberika/dataset/blob/main/Screenshot%202024-12-14%20104058.png?raw=true)
+
+`/dashboard` - Halaman Dashboard
 ![Halaman Dashboard](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0004.jpg?raw=true)
 
-`/application`
+`/application` - Halaman Pendaftaran
+
 ![Halaman Pendaftaran](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0010.jpg?raw=true)
 
-`/admin/dashboard`
+`/admin/dashboard` - Halaman Dashboard Admin
+
 ![Halaman Dashboard Admin](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0009.jpg?raw=true)
 
-`/admin/users`
+`/admin/users` - Halaman Kelola Pengguna
+
 ![Halaman Kelola Pengguna](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0003.jpg?raw=true)
 
-`/admin/applicants`
+`/admin/applicants` - Halaman Kelola Pendaftaran
+
 ![Halaman Kelola Pendaftaran](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0003.jpg?raw=true)
 
-`/admin/announcements`
+`/admin/announcements` - Halaman Kelola Pengumuman
+
 ![Halaman Kelola Pengumuman](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0011.jpg?raw=true)
 
-`/admin/announcements/create`
+`/admin/announcements/create` - Halaman Tambah Pengumuman
+
 ![Halaman Tambah Pengumuman](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0014.jpg?raw=true)
 
-`/admin/announcements/{id}`
+`/admin/announcements/{id}` - Halaman Setel Pengumuman
+
 ![Halaman Setel Pengumuman](https://github.com/roberika/dataset/blob/main/IMG-20241213-WA0015.jpg?raw=true)
 
 ## Presentation
